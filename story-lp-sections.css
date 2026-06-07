@@ -94,14 +94,21 @@
 }
 
 .story-lp-sections .lp-profile-card {
-    background: #fff;
+  background: #fff;
   border: 1px solid var(--lp-border);
   padding: 36px 22px 30px;
   text-align: center;
 }
 
+.story-lp-sections .lp-profile-image {
+  display: block;
+  width: min(560px, 100%);
+  height: auto;
+  margin: 0 auto;
+}
+
 .story-lp-sections .lp-profile-avatar {
-    width: 180px;
+  width: 180px;
   height: 180px;
   margin: 0 auto 22px;
   border-radius: 50%;
@@ -209,7 +216,7 @@
 }
 
 .story-lp-sections .lp-case-profile-image {
-    width: min(300px, 78%);
+    width: min(200px, 58%);
   height: auto;
   border-radius: 50%;
   display: block;
@@ -283,14 +290,14 @@
 }
 
 .story-lp-sections .lp-final-offer .lp-book-image {
-    width: min(340px, 82%);
+  width: min(170px, 50%);
   height: auto;
-  margin: 0 auto 36px;
+  margin: 0 auto;
   display: block;
 }
 
 .story-lp-sections .lp-final-offer .lp-cta {
-    margin-top: 0;
+  margin-top: 24px;
 }
 
 .story-lp-sections .lp-cta {
@@ -308,7 +315,7 @@
 }
 
 .story-lp-sections .lp-cta-btn-image {
-    width: min(520px, 100%);
+  width: min(380px, 100%);
   height: auto;
   display: block;
   margin: 0 auto;

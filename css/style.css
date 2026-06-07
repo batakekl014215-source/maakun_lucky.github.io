@@ -578,11 +578,13 @@ h3 {
 
 .lp-offer {
   background: #fff8fc;
+  padding-bottom: 0;
 }
 
 .lp-special-heading {
   text-align: center;
   margin-bottom: 18px;
+  font-size: clamp(1.8rem, 3.6vw, 2rem);
 }
 
 .lp-special-heading p {
@@ -614,6 +616,13 @@ h3 {
 .lp-offer-subtitle {
   margin-top: 10px;
   font-weight: 900;
+}
+
+.lp-offer-image {
+  display: block;
+  width: min(520px, 100%);
+  height: auto;
+  margin: 0 auto;
 }
 
 .lp-book-area {
@@ -751,6 +760,49 @@ h3 {
   font-size: 0.9rem;
   color: rgba(37, 36, 39, 0.72);
   text-align: left;
+}
+
+.lp-final-offer {
+  padding: 48px 0 70px;
+  background: #fff7fc;
+  text-align: center;
+}
+
+.lp-offer + .lp-final-offer {
+  padding-top: 0;
+}
+
+.lp-final-offer .lp-book-image {
+  width: min(170px, 50%);
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.lp-final-offer .lp-cta {
+  margin-top: 24px;
+}
+
+.lp-final-offer .lp-qr-area {
+  margin-top: 52px;
+  text-align: center;
+}
+
+.lp-final-offer .lp-small-title {
+  margin: 0 0 26px;
+  color: #2c3042;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.lp-final-offer .lp-qr-image {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .lp-divider-title {
