@@ -1,0 +1,455 @@
+/* =========================
+  Story LP追加セクション
+========================= */
+
+.story-lp-sections {
+    --lp-purple: #a14091;
+  --lp-red: #d9251d;
+  --lp-navy: #2c3042;
+  --lp-bg: #fff7fc;
+  --lp-light-blue: #f3f7ff;
+  --lp-border: #e6c3df;
+}
+
+.story-lp-sections .section {
+    background: var(--lp-bg);
+}
+
+.story-lp-sections .lp-narrow {
+    max-width: 620px;
+  margin: 0 auto;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.story-lp-sections .lp-text-stack {
+    display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.story-lp-sections .lp-text-stack p {
+    margin: 0;
+  color: var(--lp-navy);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-text-stack strong {
+    font-weight: 800;
+}
+
+.story-lp-sections .lp-em {
+    color: var(--lp-red);
+  font-weight: 800;
+}
+
+.story-lp-sections .lp-highlight {
+    display: inline-block;
+  background: #f4ff73;
+  padding: 2px 6px;
+  line-height: 1.75;
+}
+
+.story-lp-sections .lp-highlight-marker {
+    background: #f4ff73;
+  color: var(--lp-red);
+  font-weight: 800;
+  padding: 0 4px;
+}
+
+.story-lp-sections .lp-band {
+    position: relative;
+  background: var(--lp-purple);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.story-lp-sections .lp-band p {
+    margin: 0;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-band--arrow::after {
+    content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -34px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 36px solid transparent;
+  border-right: 36px solid transparent;
+  border-top: 36px solid var(--lp-purple);
+}
+
+.story-lp-sections .lp-profile {
+    padding: 56px 0 44px;
+}
+
+.story-lp-sections .lp-profile-card {
+    background: #fff;
+  border: 1px solid var(--lp-border);
+  padding: 36px 22px 30px;
+  text-align: center;
+}
+
+.story-lp-sections .lp-profile-avatar {
+    width: 180px;
+  height: 180px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #efe3ff;
+}
+
+.story-lp-sections .lp-profile-avatar-image {
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-lp-sections .lp-profile-name {
+    margin: 0 0 24px;
+  color: var(--lp-navy);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.story-lp-sections .lp-stats {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.story-lp-sections .lp-stat {
+    text-align: center;
+}
+
+.story-lp-sections .lp-stat-label {
+    display: block;
+  color: var(--lp-navy);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.story-lp-sections .lp-stat-value {
+    display: block;
+  color: var(--lp-red);
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.story-lp-sections .lp-stat-unit {
+    color: var(--lp-navy);
+  font-size: 14px;
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+.story-lp-sections .lp-achievement-copy {
+    padding: 70px 0 20px;
+  text-align: center;
+}
+
+.story-lp-sections .lp-achievement-copy p {
+    margin: 0;
+  color: var(--lp-navy);
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-achievement-copy .lp-achievement-strong {
+    color: var(--lp-red);
+  font-size: 36px;
+}
+
+.story-lp-sections .lp-achievement-copy .lp-spacer {
+    height: 28px;
+}
+
+.story-lp-sections .lp-story-intro {
+    padding: 48px 0 64px;
+  background: var(--lp-light-blue);
+}
+
+.story-lp-sections .lp-case-profile {
+    padding: 74px 0 62px;
+  background: var(--lp-light-blue);
+  text-align: center;
+}
+
+.story-lp-sections .lp-case-profile-label {
+    margin: 0 0 14px;
+  color: #111;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-case-profile-title {
+    margin: 0 0 42px;
+  color: #111;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-case-profile-image {
+    width: min(300px, 78%);
+  height: auto;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.story-lp-sections .lp-case-story {
+    padding: 62px 0 72px;
+  background: var(--lp-bg);
+}
+
+.story-lp-sections .lp-case-story:nth-of-type(even) {
+    background: var(--lp-light-blue);
+}
+
+.story-lp-sections .lp-story-image {
+    display: block;
+  width: 70%;
+  max-width: 460px;
+  margin: 0 auto 54px;
+  height: auto;
+}
+
+.story-lp-sections .lp-check {
+    padding: 62px 0 72px;
+  background: var(--lp-bg);
+}
+
+.story-lp-sections .lp-check p {
+    margin: 0 0 34px;
+  color: var(--lp-navy);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-check-list {
+    list-style: none;
+  padding: 0;
+  margin: 0 0 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.story-lp-sections .lp-check-list li {
+    position: relative;
+  padding-left: 34px;
+  color: var(--lp-navy);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-check-list li::before {
+    content: "☑";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #707070;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.story-lp-sections .lp-final-offer {
+    padding: 48px 0 70px;
+  background: var(--lp-bg);
+  text-align: center;
+}
+
+.story-lp-sections .lp-final-offer .lp-book-image {
+    width: min(340px, 82%);
+  height: auto;
+  margin: 0 auto 36px;
+  display: block;
+}
+
+.story-lp-sections .lp-final-offer .lp-cta {
+    margin-top: 0;
+}
+
+.story-lp-sections .lp-cta {
+    text-align: center;
+}
+
+.story-lp-sections .lp-cta-btn {
+    display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.story-lp-sections .lp-cta-btn:hover {
+    transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.story-lp-sections .lp-cta-btn-image {
+    width: min(520px, 100%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.story-lp-sections .lp-cta-note {
+    margin: 18px 0 0;
+  color: var(--lp-navy);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.story-lp-sections .lp-qr-area {
+    margin-top: 52px;
+  text-align: center;
+}
+
+.story-lp-sections .lp-small-title {
+    margin: 0 0 26px;
+  color: var(--lp-navy);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.story-lp-sections .lp-qr-box {
+    width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px dashed #999;
+  display: grid;
+  place-items: center;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 12px;
+}
+
+.story-lp-sections .lp-qr-image {
+    display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .story-lp-sections .lp-narrow {
+    padding-left: 34px;
+    padding-right: 34px;
+  }
+
+  .story-lp-sections .lp-text-stack {
+    gap: 32px;
+  }
+
+  .story-lp-sections .lp-text-stack p,
+  .story-lp-sections .lp-check p,
+  .story-lp-sections .lp-check-list li {
+    font-size: 18px;
+    line-height: 1.9;
+  }
+
+  .story-lp-sections .lp-band {
+    padding: 28px 18px;
+  }
+
+  .story-lp-sections .lp-band p {
+    font-size: 25px;
+  }
+
+  .story-lp-sections .lp-profile {
+    padding: 48px 0 38px;
+  }
+
+  .story-lp-sections .lp-profile-card {
+    padding: 32px 16px 26px;
+  }
+
+  .story-lp-sections .lp-profile-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .story-lp-sections .lp-profile-name {
+    font-size: 21px;
+  }
+
+  .story-lp-sections .lp-stat-label {
+    font-size: 9px;
+  }
+
+  .story-lp-sections .lp-stat-value {
+    font-size: 30px;
+  }
+
+  .story-lp-sections .lp-achievement-copy {
+    padding-top: 62px;
+  }
+
+  .story-lp-sections .lp-achievement-copy p {
+    font-size: 24px;
+  }
+
+  .story-lp-sections .lp-achievement-copy .lp-achievement-strong {
+    font-size: 32px;
+  }
+
+  .story-lp-sections .lp-story-intro,
+  .story-lp-sections .lp-case-story,
+  .story-lp-sections .lp-check {
+    padding-top: 56px;
+    padding-bottom: 64px;
+  }
+
+  .story-lp-sections .lp-case-profile {
+    padding-top: 70px;
+    padding-bottom: 58px;
+  }
+
+  .story-lp-sections .lp-case-profile-label {
+    font-size: 20px;
+  }
+
+  .story-lp-sections .lp-case-profile-title {
+    font-size: 30px;
+  }
+
+  .story-lp-sections .lp-story-image {
+    margin-bottom: 46px;
+  }
+
+  .story-lp-sections .lp-check-list li {
+    padding-left: 30px;
+  }
+
+  .story-lp-sections .lp-final-offer {
+    padding-top: 42px;
+  }
+}

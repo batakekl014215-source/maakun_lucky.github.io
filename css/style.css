@@ -521,7 +521,7 @@ h3 {
   color: var(--white);
   text-align: center;
   font-size: clamp(1.2rem, 3.8vw, 1.6rem);
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .lp-empathy {
