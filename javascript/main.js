@@ -12,11 +12,14 @@ function updateHeader() {
 function startHeroSlider() {
   if (slides.length < 2) return;
 
+  const dots = Array.from(document.querySelectorAll(".seo-hero-dot"));
   let index = 0;
   window.setInterval(() => {
     slides[index].classList.remove("is-active");
+    dots[index]?.classList.remove("is-active");
     index = (index + 1) % slides.length;
     slides[index].classList.add("is-active");
+    dots[index]?.classList.add("is-active");
   }, 4500);
 }
 

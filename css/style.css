@@ -516,12 +516,24 @@ h3 {
 }
 
 .lp-band {
+  position: relative;
+  z-index: 1;
   padding: 22px 18px;
   background: var(--rose);
   color: var(--white);
   text-align: center;
   font-size: clamp(1.2rem, 3.8vw, 1.6rem);
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.lp-band::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--rose);
 }
 
 .lp-empathy {
@@ -547,6 +559,71 @@ h3 {
   font-weight: 600;
 }
 
+.seo-hero-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 18px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.seo-hero-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0 30px;
+}
+
+.seo-hero-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+
+.seo-hero-dot.is-active {
+  background: var(--rose-dark);
+}
+
+.seo-hero-copy {
+  display: grid;
+  gap: 22px;
+  text-align: center;
+}
+
+.seo-hero-line {
+  display: block;
+  font-size: clamp(1.2rem, 4.4vw, 1.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.seo-hero-line--sm {
+  font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+}
+
+.seo-hero-em {
+  color: var(--rose-dark);
+  font-weight: 900;
+}
+
+.seo-hero-strong {
+  font-weight: 900;
+  font-size: 1.15em;
+}
+
+.seo-hero-sub {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 .lp-text-stack {
   margin-top: 26px;
   display: grid;
@@ -557,6 +634,26 @@ h3 {
 
 .lp-em {
   font-weight: 900;
+  color: var(--rose-dark);
+}
+
+.lp-highlight {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0;
+  text-align: center;
+}
+
+.lp-highlight p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.lp-highlight p.lp-em {
+  font-weight: 900;
+  font-size: 1.3rem;
   color: var(--rose-dark);
 }
 
@@ -652,7 +749,7 @@ h3 {
 
 .lp-book-image {
   display: block;
-  width: min(170px, 50%);
+  width: min(280px, 78%);
   height: auto;
   border-radius: 10px;
   box-shadow: none;
@@ -792,7 +889,7 @@ h3 {
 }
 
 .lp-final-offer .lp-book-image {
-  width: min(170px, 50%);
+  width: min(280px, 78%);
   height: auto;
   margin: 0 auto;
   display: block;
@@ -1107,8 +1204,9 @@ h3 {
 }
 
 .copy-em {
-  font-weight: 700;
-  font-size: clamp(2.25rem, 6.2vw, 2.35rem);
+  font-weight: 650;
+  font-size: clamp(2.00rem, 6.2vw, 2.00rem);
+  letter-spacing: 0.03em;
 }
 
 .copy-em--num {
@@ -1118,9 +1216,9 @@ h3 {
 
 .copy-em--marker {
   display: inline;
-  padding: 0em 0.26em;
+  padding: 0em 0.16em;
   border-radius: 8px;
-  background: linear-gradient(transparent 70%, rgba(216, 91, 127, 0.24) 0);
+  background: linear-gradient(transparent 60%, rgba(216, 91, 127, 0.24) 0);
   color: var(--rose-dark);
 }
 
@@ -1148,7 +1246,7 @@ h3 {
 
 .achievement-title {
   margin: 20px 0;
-  font-size: 1.2rem;
+  font-size: 0.5rem;
   font-weight: 900;
   line-height: 1.45;
   color: var(--ink);
@@ -1251,12 +1349,18 @@ h3 {
     margin-top: 14px;
   }
 
+  .achievement-copy{
+    margin-top: 18px;
+    font-size: clamp(1.25rem, 6vw, 1.55rem);
+    color: var(--rose-dark);
+  }
+
   .achievement-body {
     padding: 16px 16px 18px;
   }
 
   .achievement-title {
-    font-size: 1.45rem;
+    font-size: 1.15rem;
     line-height: 1.35;
   }
 
