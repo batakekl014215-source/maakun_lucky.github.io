@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彼が離れていかないか不安な関係から「ずっと一緒にいて」と愛され続ける方法｜愛されnoteDay1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-white:#FFFBFA;
+    --bg-pink-soft:#FFF3F6;
+    --bg-pink-deep:#FCE4EC;
+    --accent:#E85D82;
+    --accent-deep:#D6336C;
+    --text:#4A3A3F;
+    --text-light:#6b585d;
+    --card-bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP",sans-serif;
+    color:var(--text);
+    background:var(--bg-white);
+    line-height:2;
+    font-weight:500;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  section{
+    padding:64px 0;
+  }
+  .bg-white{background:var(--bg-white);}
+  .bg-soft{background:var(--bg-pink-soft);}
+  .bg-deep{background:var(--bg-pink-deep);}
+
+  h1,h2,h3{
+    font-family:"Noto Sans JP",sans-serif;
+    line-height:1.6;
+    margin:0 0 0.6em;
+    color:var(--accent-deep);
+    font-weight:700;
+  }
+  p{
+    margin:0 0 2em;
+    font-size:16px;
+    font-weight:500;
+  }
+  p:last-child{margin-bottom:0;}
+  .beat{margin:0 0 1.9em;}
+
+  /* サブヘッドコピー（原稿で中央配置されていた見出し） */
+  .subhead{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:700;
+    font-size:21px;
+    line-height:1.8;
+    color:var(--accent-deep);
+    text-align:center;
+    margin:0 0 1.5em;
+    position:relative;
+  }
+  .subhead::after{
+    content:"";
+    display:block;
+    width:40px;
+    height:3px;
+    background:var(--accent);
+    border-radius:3px;
+    margin:16px auto 0;
+  }
+
+  /* 鉤括弧・強調 */
+  .quote{
+    color:var(--accent-deep);
+    font-weight:700;
+    background:linear-gradient(transparent 62%, rgba(232,93,130,0.20) 62%);
+    padding:0 1px;
+  }
+
+  /* ファーストビュー */
+  .fv{
+    padding:0;
+  }
+  .fv-img{
+    display:block;
+    width:100%;
+  }
+
+  /* 画像・帯プレースホルダー */
+  .img-placeholder{
+    margin:40px auto;
+    border:1.5px dashed var(--accent);
+    border-radius:16px;
+    background:rgba(232,93,130,0.05);
+    color:var(--accent-deep);
+    font-size:13.5px;
+    text-align:center;
+    padding:34px 16px;
+  }
+  .img-placeholder.band{
+    border-radius:0;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    padding:26px 16px;
+  }
+
+  .divider{
+    text-align:center;
+    color:var(--accent);
+    font-size:20px;
+    letter-spacing:0.5em;
+    padding:44px 0;
+  }
+
+  /* 強調テキスト */
+  .highlight-box{
+    background:#fff;
+    border-radius:18px;
+    padding:36px 24px;
+    margin:0 0 2em;
+    box-shadow:0 8px 24px rgba(214,51,108,0.08);
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:700;
+    font-size:19px;
+    line-height:2.1;
+    color:var(--text);
+    text-align:center;
+  }
+  .highlight-box .quote{
+    display:inline-block;
+    font-size:1.4em;
+    line-height:1.6;
+    margin:10px 0;
+  }
+
+  /* セクション見出し */
+  .section-title{
+    text-align:center;
+    font-size:22px;
+    margin-bottom:48px;
+  }
+  .section-title .small{
+    display:block;
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    font-size:13px;
+    color:var(--accent);
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+
+  /* 体験談カード */
+  .testimonial-card{
+    background:var(--card-bg);
+    border-radius:20px;
+    padding:32px 26px;
+    margin-bottom:28px;
+    box-shadow:0 6px 20px rgba(74,58,63,0.06);
+  }
+  .testimonial-card .before{
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:17px;
+    color:var(--text);
+    font-weight:700;
+    margin-bottom:10px;
+    line-height:1.7;
+    text-align:center;
+  }
+  .testimonial-card .arrow{
+    text-align:center;
+    color:var(--accent);
+    font-size:20px;
+    margin:8px 0;
+  }
+  .testimonial-card .after{
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:20px;
+    color:var(--accent-deep);
+    font-weight:700;
+    line-height:1.6;
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .testimonial-card .profile{
+    font-size:13.5px;
+    color:var(--text-light);
+    border-top:1px dashed #eecdd6;
+    padding-top:14px;
+    margin-top:14px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .testimonial-card .line-shot{
+    margin-top:14px;
+    background:var(--bg-pink-soft);
+    border-radius:12px;
+    padding:16px;
+    font-size:12.5px;
+    color:var(--accent-deep);
+    text-align:center;
+  }
+  .testimonial-card .line-shot img{
+    display:block;
+    width:82%;
+    margin:0 auto;
+    border-radius:12px;
+  }
+  .testimonial-card .months-label{
+    text-align:center;
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--accent-deep);
+    letter-spacing:0.05em;
+    margin:0 0 14px;
+  }
+
+  /* ベネフィットリスト */
+  .benefit-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .benefit-list li{
+    background:#fff;
+    border-radius:16px;
+    padding:22px 22px;
+    margin-bottom:16px;
+    font-size:15.5px;
+    font-weight:500;
+    line-height:1.9;
+    box-shadow:0 4px 14px rgba(74,58,63,0.05);
+  }
+  .benefit-list li::before{
+    content:"♡";
+    color:var(--accent);
+    margin-right:8px;
+  }
+
+  /* 情報ボックス */
+  .info-box{
+    background:#fff;
+    border:1px solid #f3c9d5;
+    border-radius:18px;
+    padding:28px 26px;
+    font-size:15px;
+    line-height:2;
+  }
+  .info-box dt{
+    color:var(--accent-deep);
+    font-weight:700;
+    display:inline-block;
+    width:100px;
+  }
+  .info-box dd{
+    display:inline;
+    margin:0;
+  }
+  .info-box .row{margin-bottom:8px;}
+
+  /* チェックリスト */
+  .check-list{
+    list-style:none;
+    padding:0;
+    margin:0 0 2em;
+  }
+  .check-list li{
+    margin-bottom:10px;
+    font-size:15.5px;
+    font-weight:600;
+  }
+
+  /* 次回予告 */
+  .next-preview{
+    background:#fff;
+    border-radius:20px;
+    padding:32px 26px;
+    text-align:center;
+  }
+  .next-preview .label{
+    font-size:13px;
+    color:var(--accent-deep);
+    letter-spacing:0.1em;
+    margin-bottom:14px;
+    display:block;
+  }
+  .next-preview h3{
+    font-size:19px;
+    margin-bottom:0;
+  }
+
+  /* ワーク・CTA */
+  .work-box{
+    background:#fff;
+    border-radius:20px;
+    padding:36px 26px;
+    text-align:center;
+    box-shadow:0 8px 24px rgba(214,51,108,0.08);
+  }
+  .cta-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:18px 48px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+    color:#fff;
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:17px;
+    font-weight:700;
+    border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 10px 24px rgba(214,51,108,0.3);
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    font-size:12.5px;
+    color:var(--text-light);
+  }
+
+  @media (max-width:420px){
+    section{padding:52px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ファーストビュー -->
+<section class="fv">
+  <img src="1FV.png" alt="彼からずっと愛され続ける方法を知って実践すれば、彼からの愛で溢れる恋愛を叶えることができます！" class="fv-img">
+</section>
+
+<div class="divider">♡ ♡ ♡</div>
+
+<!-- 悩みの描写 -->
+<section class="bg-white">
+  <div class="wrap">
+    <h2 class="subhead">今こんなことで<br>悩んでいませんか？</h2>
+
+    <p class="beat">最初は彼の方から</p>
+    <p class="beat"><span class="quote">「いつ会える？」</span>って誘ってくれて<br>LINEも毎日やり取りをして</p>
+    <p class="beat">話も合う。<br>趣味も似ている。</p>
+    <p class="beat">だから、<br>初対面が緊張しやすい私でも</p>
+    <p class="beat">あまり緊張せずに話せて<br>一緒にいてもすごく楽しい。</p>
+    <p class="beat"><span class="quote">「このまま付き合えるんじゃないかな」</span><br>って期待もしてた。</p>
+
+    <h2 class="subhead">でも付き合おうとは<br>ならなくて</h2>
+    <p class="beat">何度か2人で会ったけど<br>彼から告白をされない…</p>
+    <p class="beat"><span class="quote">「彼は慎重なタイプなのかな？」</span><br><span class="quote">「お互いのこともっと知りたいのかな？」</span></p>
+    <p class="beat">そう思って<br>最初はそんなに考えていなかったけど</p>
+
+    <h2 class="subhead">だんだん私ばかり<br>追いかけるように…</h2>
+    <p class="beat">気づけば、LINEをするのも<br><span class="quote">「会いたい」</span>って誘うのも</p>
+    <p class="beat">私からばっかりになって<br>彼はあまり積極的じゃない…</p>
+    <p class="beat">そのLINEの返信も<br>1週間くらい返ってこなかったり</p>
+    <p class="beat">勇気を出して誘ったのも<br>断られてしまって</p>
+    <p class="beat"><span class="quote">「私何かしちゃったかな…」</span><br>と不安になっていく</p>
+
+    <p class="beat">最初は彼も積極的に<br>アプローチをしてくれてたから</p>
+    <p class="beat">それがなくなったと思うと</p>
+    <p class="beat"><span class="quote">「会いたくないのかな…」</span><br><span class="quote">「このままフェードアウトしちゃうのかな」</span></p>
+    <p class="beat">とあることないこと<br>どんどんネガティブに考えちゃう…</p>
+
+    <h2 class="subhead">でも重いって<br>思われたくもない</h2>
+    <p class="beat">自分から<br>会いたいって言いすぎて</p>
+    <p class="beat"><span class="quote">「こいつめんどくさいな」</span><br><span class="quote">「重たいな」</span></p>
+    <p class="beat">って彼に思われるのも嫌で、</p>
+    <p class="beat">仕事も忙しそうだから<br>負担もかけたくなくて</p>
+
+    <h2 class="subhead">でもこのままだと<br>彼が離れていきそう</h2>
+    <p class="beat">私から何もしなかったら<br>このまま彼からも何もなくて</p>
+    <p class="beat"><span class="quote">「本当にフェードアウト<br>しちゃうんじゃないか」</span></p>
+    <p class="beat"><span class="quote">「これまでの関係も<br>なかったことになっちゃうのか」</span></p>
+    <p class="beat">でも、どうしたらいいか<br>わからない</p>
+
+    <h2 class="subhead">恋愛経験もあまりないし</h2>
+    <p class="beat">ちゃんとしたお付き合いを<br>したこともないから</p>
+    <p class="beat">正直、自信も持てなくて<br>どうすればいいのかわからない…</p>
+
+    <h2 class="subhead">周りはみんな幸せそう…</h2>
+    <p class="beat">友だちのインスタには<br>彼氏との旅行の投稿が載ってて</p>
+    <p class="beat">結婚をしてる子もいる…<br>そんな周りに比べて私は</p>
+    <p class="beat">結婚どころか<br>彼氏も全然できなくて</p>
+    <p class="beat">周りはみんな幸せそうなのに<br>なんで私はうまく行かないんだろう</p>
+  </div>
+</section>
+
+<!-- 朗報・解決策の提示 -->
+<section class="bg-deep">
+  <div class="wrap">
+    <h2 class="subhead">そんな不安なあなたに<br>朗報です</h2>
+
+    <div class="highlight-box">
+      彼からのアプローチが<br>減っていても<br>
+      勇気を出して言った誘いを<br>断られていても<br><br>
+      <span class="quote">「彼からずっと<br>愛され続ける方法」</span><br>
+      を知って実践をするだけで<br><br>
+      誰でも彼から<br>
+      <span class="quote">「ずっと一緒にいたい♡」</span><br>
+      と愛されるようになれるんです！
+    </div>
+  </div>
+</section>
+
+<div class="divider">♡ ♡ ♡</div>
+
+<!-- 体験談 -->
+<section class="bg-white">
+  <div class="wrap">
+    <h2 class="section-title"><span class="small">CASE</span>実際に叶えた方の声</h2>
+
+    <div class="testimonial-card">
+      <p class="before">デートの誘いを<br>4日間も既読無視されていた関係から</p>
+      <div class="arrow">↓</div>
+      <p class="after">彼から告白をされ<br>本命彼女に！</p>
+      <div class="line-shot"><img src="ちなつさんb.jpg" alt="ちなつさんが相談当時に送ってくれたLINEのスクリーンショット"></div>
+      <div class="arrow">↓</div>
+      <p class="months-label">2ヶ月後</p>
+      <div class="line-shot"><img src="ちなつさんa.jpg" alt="ちなつさんが後日送ってくれた成果報告のLINEのスクリーンショット"></div>
+      <div class="profile">
+        <span>ちなつさん　28歳　事務職</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="before">LINEの頻度は減って<br>「もう脈がないかも…」と思ってた関係が</p>
+      <div class="arrow">↓</div>
+      <p class="after">お付き合いして<br>結婚も視野に！</p>
+      <div class="line-shot"><img src="みさとさんb.jpg" alt="みさとさんが相談当時に送ってくれたLINEのスクリーンショット"></div>
+      <div class="arrow">↓</div>
+      <p class="months-label">4ヶ月後</p>
+      <div class="line-shot"><img src="みさとさんa.jpg" alt="みさとさんが後日送ってくれた成果報告のLINEのスクリーンショット"></div>
+      <div class="profile">
+        <span>みさとさん　42歳　薬</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="before">誘ってもいつも<br>「忙しい」と断られてた関係が</p>
+      <div class="arrow">↓</div>
+      <p class="after">「一緒にいてほしい」と<br>告白された！</p>
+      <div class="line-shot"><img src="あやさんb.jpg" alt="あやさんが相談当時に送ってくれたLINEのスクリーンショット"></div>
+      <div class="arrow">↓</div>
+      <p class="months-label">5ヶ月後</p>
+      <div class="line-shot"><img src="あやさんa.jpg" alt="あやさんが後日送ってくれた成果報告のLINEのスクリーンショット"></div>
+      <div class="profile">
+        <span>あやさん</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="before">2年間ずっと曖昧な関係で<br>「都合の良い関係」って思ってたけど</p>
+      <div class="arrow">↓</div>
+      <p class="after">「将来のことも考えて<br>付き合ってほしい」と告白された！</p>
+      <div class="line-shot"><img src="ゆみさんb.jpg" alt="ゆみさんが相談当時に送ってくれたLINEのスクリーンショット"></div>
+      <div class="arrow">↓</div>
+      <p class="months-label">6ヶ月後</p>
+      <div class="line-shot"><img src="ゆみさんa.jpg" alt="ゆみさんが後日送ってくれた成果報告のLINEのスクリーンショット"></div>
+      <div class="profile">
+        <span>ゆみさん</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6日間企画の告知 -->
+<section class="bg-soft">
+  <div class="wrap">
+    <p class="beat" style="text-align:center;">
+      これから6日間かけて<br>この「愛されnote」を通して<br><br>
+      彼からずっと愛され続ける方法について<br><br>
+      完全解説していきます
+    </p>
+
+    <h2 class="section-title" style="margin-top:56px;">
+      愛されnoteを読むと<br>こんな未来が叶います♡
+    </h2>
+
+    <ul class="benefit-list">
+      <li>自分からLINEをしなくても、彼の方から「今何してるの？」って連絡がくる</li>
+      <li>「次いつ空いてる？」「ここ一緒に行こうよ」と、彼の方からデートに誘ってくれる</li>
+      <li>彼の方から「会いたい」「好き」と伝えてくれて、ちゃんと愛されている実感を持てる</li>
+      <li>「俺と付き合ってほしい」「ずっと一緒にいたい」と本命として選ばれる</li>
+      <li>付き合ったあとも、素の自分でなんでも話せて、彼からずっと大切にされる関係が続いていく</li>
+    </ul>
+
+    <h2 class="subhead" style="margin-top:40px;">こんな幸せな恋愛を<br>叶えるための内容になってます！</h2>
+  </div>
+</section>
+
+<div class="divider">♡ ♡ ♡</div>
+
+<!-- まーくんからのメッセージ -->
+<section class="bg-white">
+  <div class="wrap">
+    <p class="beat">「愛されnote」の配信には<br>僕の想いが詰まってます💪</p>
+
+    <p class="beat">
+      ありがたいことに<br>先日お渡しした配布をした方からは<br><br>
+      <span class="quote">「もっと彼から愛されたいです！」</span><br>
+      <span class="quote">「もっと教えて欲しいです！」</span>と<br><br>
+      といった意見もたくさんいただきました。
+    </p>
+
+    <p class="beat">
+      そこで、今回！<br>
+      SNSで僕を見つけてくれて<br>
+      公式LINEまで追加をしてくださった<br>
+      そんなあなたのために
+    </p>
+
+    <p class="beat">
+      これまで250名以上女性を<br>
+      個別にサポートをしてきた<br>
+      その経験と知識を<br>
+      この「愛されnote」に詰め込んだので
+    </p>
+
+    <h2 class="subhead">必ず最後まで読んでください！<br>（後悔はさせません）</h2>
+  </div>
+</section>
+
+<!-- マニュアルの振り返り -->
+<section class="bg-soft">
+  <div class="wrap">
+    <h2 class="section-title">
+      彼からずっと愛され続ける<br>恋愛マニュアル<br>
+      <span class="small" style="margin-top:14px;">もう見ましたか？</span>
+    </h2>
+
+    <p class="beat">
+      公式LINEを追加してくださったときにお渡しした<br>
+      彼からずっと愛され続ける恋愛マニュアルでは
+    </p>
+
+    <p class="beat">彼の行動＝気持ちの大きさ<br>ではないというお話をしました。</p>
+
+    <ul class="check-list">
+      <li>☑️ 最初に比べて</li>
+      <li>☑️ 彼の方から誘われなくなった</li>
+      <li>☑️ LINEの返信が遅くなった</li>
+    </ul>
+
+    <p class="beat">
+      <span class="quote">「今は彼女を作るつもりはない」</span><br>
+      <span class="quote">「今は付き合えない」</span><br>
+      <span class="quote">「結婚願望がない」</span>
+    </p>
+
+    <p class="beat">こういう行動をされたり<br>こんなこと言われたりすると</p>
+
+    <p class="beat">
+      <span class="quote">「私は恋愛対象外なのかな？」</span><br>
+      <span class="quote">「もう会いたくないのかな？」</span>
+    </p>
+
+    <p class="beat">そう思ってしまったりも<br>するかもしれないんですけど、</p>
+
+    <h2 class="subhead">これ全部、<br>彼の気持ちが離れているサインではありません</h2>
+
+    <p class="beat" style="font-size:13.5px;color:var(--text-light);font-weight:500;">
+      （まだ「愛され続ける恋愛マニュアル」を<br>
+      読んでいない方は今すぐ戻って先に読んでください！）
+    </p>
+
+    <h2 class="subhead">あなたの恋愛も<br>例外ではありません</h2>
+  </div>
+</section>
+
+<!-- 企画詳細 -->
+<section class="bg-white">
+  <div class="wrap">
+    <p class="beat">実際にどうやって<br>彼から愛されるようになるのか</p>
+    <p class="beat">今日から6日間かけて<br>配信していくのですが、</p>
+    <p class="beat">今回のこの企画、<br>「愛されnote」について</p>
+    <p class="beat">絶対に覚えておいて欲しいことが<br>3つあります！</p>
+
+    <div class="info-box">
+      <div class="row"><dt>配信期間</dt><dd>6日間（この配信含む）</dd></div>
+      <div class="row"><dt>配信日時</dt><dd>毎日21時</dd></div>
+      <div class="row"><dt>配信場所</dt><dd>公式LINEに配信します</dd></div>
+    </div>
+
+    <p class="beat" style="text-align:center;margin-top:28px;">
+      毎回の記事にワークがあるので<br>必ず取り組んでください！
+    </p>
+  </div>
+</section>
+
+<!-- 次回予告 -->
+<section class="bg-deep">
+  <div class="wrap">
+    <div class="next-preview">
+      <span class="label">次回予告</span>
+      <h3>
+        私ばかりが好きになって<br>
+        彼が少しずつ離れていってしまう<br>
+        本当の原因
+      </h3>
+    </div>
+
+    <p class="beat" style="margin-top:40px;">
+      あなたはこれまで<br>彼との関係を大切にしたくて
+    </p>
+
+    <p class="beat">
+      <span class="quote">「どんなLINEを送ればいいんだろう」</span><br>
+      <span class="quote">「今は待った方がいいのかな」</span><br>
+      <span class="quote">「会いたいって言ったら重いと思われるかな」</span>
+    </p>
+
+    <p class="beat">と彼のことをたくさん考えて<br>行動してきたと思います。</p>
+
+    <p class="beat">それなのに<br>頑張れば頑張るほど</p>
+    <p class="beat">最初のように<br>自然に話せなくなったり</p>
+    <p class="beat">気づけば自分ばかりが<br>彼を追いかけるようになってしまう。</p>
+
+    <p class="beat">なぜ、このようなことが<br>起きてしまうのか。</p>
+    <p class="beat">それは<br>あなたに魅力がないからでも</p>
+    <p class="beat">彼を好きになりすぎたから<br>でもありません。</p>
+
+    <p class="beat">
+      ただ多くの女性が気づかないまま<br>
+      彼との距離を遠ざけてしまう<br>
+      ある原因があります。
+    </p>
+
+    <p class="beat">この原因を<br>知らないままでは</p>
+    <p class="beat">男性心理やLINEの送り方を<br>いくら調べても</p>
+    <p class="beat">
+      また彼の反応が気になり<br>
+      <span class="quote">「これで合っているのかな」</span><br>
+      と正解を探し続けることになってしまいます。
+    </p>
+
+    <p class="beat">明日の愛されnoteでは</p>
+    <p class="beat">彼を大切にしようと<br>頑張っているはずなのに</p>
+    <p class="beat">なぜ自分ばかりが追いかける<br>関係になってしまうのか。</p>
+    <p class="beat">その本当の原因を<br>お伝えします。</p>
+    <h2 class="subhead">必ず知ってほしい内容なので<br>絶対に読んでください！</h2>
+  </div>
+</section>
+
+<!-- 今日のワーク -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="work-box">
+      <h2 class="section-title" style="margin-bottom:24px;"><span class="small">今日のワーク</span></h2>
+
+      <p class="beat">今回の愛されnoteでは</p>
+      <p class="beat">ただ記事を読んで<span class="quote">「なるほど」</span>と<br>思うだけではなく</p>
+      <p class="beat">あなた自身の恋愛と重ねながら<br>内容を受け取ってもらうために</p>
+      <p class="beat">それぞれの配信の最後に<br>簡単なワークを用意しています。</p>
+
+      <p class="beat">
+        恋愛の悩みは相手との関係や<br>
+        これまでの出来事によって<br>
+        一人ひとり違います。
+      </p>
+
+      <p class="beat">
+        だからこそ<br><span class="quote">「私の場合はどうだろう」</span><br>
+        と考えながら進めることが大切です。
+      </p>
+
+      <p class="beat">自分が今<br>何に不安を感じているのか。</p>
+      <p class="beat">本当は彼と<br>どんな関係になりたいのか。</p>
+      <p class="beat">一つずつ言葉にすることで</p>
+      <p class="beat">今まで自分でも<br>気づいていなかった気持ちや</p>
+      <p class="beat">これから変えていくべきことも<br>少しずつ見えてきます。</p>
+
+      <p class="beat">
+        6日間の内容を<br>あなた自身の恋愛を変えるための<br>
+        時間にしてほしいので
+      </p>
+      <p class="beat">ぜひ毎回のワークにも<br>参加してくださいね😊</p>
+
+      <a href="https://s.lmes.jp/landing-qr/2004175116-DZPYny4A?uLand=QDidwy" class="cta-btn">今日のワークに回答する</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  ©まーくん｜男性目線で愛される女性へ
+</footer>
+
+</body>
+</html>
