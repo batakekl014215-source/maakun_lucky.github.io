@@ -467,38 +467,15 @@
   .full-quote.long strong{display:block;font-size:19px;font-weight:800;margin:4px 0;}
 
   /* 事例カード（Afterを主役にする構成） */
-  .impact-grid{display:grid;gap:26px;margin:30px 0 40px;}
-  .impact-card{position:relative;overflow:hidden;border-radius:26px;background:#fff;box-shadow:0 18px 40px rgba(60,40,55,.14);padding:28px 22px 24px;}
-  .impact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:7px;}
-  .impact-purple::before{background:linear-gradient(90deg,#8b6bb0,#c48bd9);}
-  .impact-blue::before{background:linear-gradient(90deg,#4f86c6,#7ec3d6);}
-  .impact-orange::before{background:linear-gradient(90deg,#dd8f4e,#f0c27a);}
-  .impact-pink::before{background:linear-gradient(90deg,var(--accent),var(--accent-deep));}
-  .impact-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;color:#fff;padding:5px 16px;border-radius:999px;margin-bottom:14px;}
-  .impact-purple .impact-tag{background:linear-gradient(120deg,#8b6bb0,#c48bd9);}
-  .impact-blue .impact-tag{background:linear-gradient(120deg,#4f86c6,#7ec3d6);}
-  .impact-orange .impact-tag{background:linear-gradient(120deg,#dd8f4e,#f0c27a);}
-  .impact-pink .impact-tag{background:linear-gradient(120deg,var(--accent),var(--accent-deep));}
-  .impact-headline{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:14px;}
-  .impact-before{font-size:13.5px;color:#8a7d82;line-height:1.7;padding:12px 14px;background:#f6f1f3;border-radius:14px;margin-bottom:8px;}
-  .impact-note{font-size:13.5px;line-height:1.8;color:var(--text-light);margin-bottom:4px;}
-  .impact-connector{text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.04em;margin:18px 0 10px;}
-  .impact-purple .impact-connector{color:#8b6bb0;}
-  .impact-blue .impact-connector{color:#4f86c6;}
-  .impact-orange .impact-connector{color:#c47a2e;}
-  .impact-pink .impact-connector{color:var(--accent-deep);}
-  .impact-chat{display:flex;align-items:flex-end;gap:8px;margin-bottom:16px;}
-  .impact-chat-tag{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
-  .impact-purple .impact-chat-tag{background:linear-gradient(135deg,#8b6bb0,#c48bd9);}
-  .impact-blue .impact-chat-tag{background:linear-gradient(135deg,#4f86c6,#7ec3d6);}
-  .impact-orange .impact-chat-tag{background:linear-gradient(135deg,#dd8f4e,#f0c27a);}
-  .impact-pink .impact-chat-tag{background:linear-gradient(135deg,var(--accent),var(--accent-deep));}
-  .impact-chat-bubble{background:#fff;border-radius:16px;border-bottom-left-radius:4px;padding:12px 16px;font-size:15.5px;font-weight:700;color:var(--text);box-shadow:0 4px 12px rgba(40,30,40,.12);border:1px solid rgba(0,0,0,.05);}
-  .impact-result{text-align:center;font-size:15.5px;font-weight:700;padding:14px 16px;border-radius:14px;}
-  .impact-purple .impact-result{color:#7a5a97;background:#f6f1fa;}
-  .impact-blue .impact-result{color:#3f6ea3;background:#eef6fa;}
-  .impact-orange .impact-result{color:#a86a2e;background:#fdf4e7;}
-  .impact-pink .impact-result{color:var(--accent-deep);background:#fdeef2;}
+  .impact-kicker{text-align:center;font-size:19px;font-weight:800;color:var(--accent-deep);margin:0 0 22px;}
+  .case-compact{background:#fff;border-radius:24px;padding:2px 20px;margin:24px 0 38px;box-shadow:0 14px 34px rgba(86,52,66,.10);}
+  .case-row{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line);}
+  .case-row:last-child{border-bottom:none;}
+  .case-num{flex:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-deep));}
+  .case-copy{flex:1;min-width:0;}
+  .case-before{font-size:12.5px;color:var(--text-light);margin-bottom:1px;}
+  .case-before::after{content:"↓";display:block;color:#dcb7c1;font-size:12px;line-height:1.3;margin:1px 0;}
+  .case-after{font-size:16px;font-weight:800;color:var(--accent-deep);line-height:1.45;}
   .full-quote{margin:28px -16px 38px;padding:36px 24px;text-align:center;color:#fff;background:linear-gradient(145deg,#c9587d,#7c607f);border-radius:28px;font-size:22px;font-weight:700;line-height:1.8;box-shadow:0 16px 36px rgba(107,63,86,.22);}
   @media(max-width:520px){.wrap{padding:0 22px}.scene{margin-left:-4px;margin-right:-4px}.stuck-loop{grid-template-columns:1fr}.loop-arrow{transform:rotate(90deg)}.choice-scale{grid-template-columns:1fr}.choice-vs{transform:rotate(90deg)}.ribbon-title{font-size:19px}.full-quote{font-size:20px}}
 </style>
@@ -765,55 +742,37 @@
 <div class="wave" style="color:var(--bg-white)"><svg viewBox="0 0 500 40" preserveAspectRatio="none"><path d="M0,25 C125,0 375,45 500,15 L500,40 L0,40 Z" fill="currentColor"/></svg></div>
 <section class="bg-white">
   <div class="wrap">
-    <p class="pull-quote">ここまで読んで、<br><span class="quote">「しおんさんだから<br>うまくいったんじゃないの？」</span><br>と思った方も<br>いるかもしれません。</p>
+    <p class="pull-quote">変わったのは、<br>しおんさんだけではありません。</p>
+    <p class="impact-kicker">こんな関係からでも…！</p>
 
-    <p class="beat">でも、違います。</p>
-
-    <p class="beat">彼からずっと愛され続ける方法を知って<br>関係を変えていったのは、<br>しおんさんだけではありません。</p>
-
-    <div class="full-quote">返信が来ない人も。<br>誘っても断られていた人も。<br>2年間、曖昧なままだった人も。<br><br>彼から求められる関係に<br>変わっています。</div>
-
-    <p class="beat">実際に、<br>こんな状況からも<br>関係が変わっています。</p>
-
-    <div class="impact-grid">
-      <div class="impact-card impact-purple">
-        <span class="impact-tag">CASE 01</span>
-        <p class="impact-headline">4日間、返信がなかった女性</p>
-        <p class="impact-before">デートに誘っても<br>4日間ずっと既読無視</p>
-        <p class="impact-note">「もう脈はないのかも」と<br>諦めかけていました。</p>
-        <p class="impact-connector">そして、彼から</p>
-        <div class="impact-chat"><span class="impact-chat-tag">彼</span><span class="impact-chat-bubble">付き合ってほしい</span></div>
-        <p class="impact-result">告白されて、本命彼女に</p>
+    <div class="case-compact">
+      <div class="case-row">
+        <span class="case-num">01</span>
+        <div class="case-copy">
+          <p class="case-before">4日間ずっと既読無視</p>
+          <p class="case-after">彼から告白されて、本命彼女に！</p>
+        </div>
       </div>
-
-      <div class="impact-card impact-blue">
-        <span class="impact-tag">CASE 02</span>
-        <p class="impact-headline">LINEが減り続けていた女性</p>
-        <p class="impact-before">LINEがどんどん減っていた関係</p>
-        <p class="impact-note">「好きなら、もっと連絡してくれるよね」<br>と不安になっていました。</p>
-        <p class="impact-connector">そして、彼から</p>
-        <div class="impact-chat"><span class="impact-chat-tag">彼</span><span class="impact-chat-bubble">次、いつ会える？</span></div>
-        <p class="impact-result">お付き合いが始まり、結婚も考える関係に</p>
+      <div class="case-row">
+        <span class="case-num">02</span>
+        <div class="case-copy">
+          <p class="case-before">LINEがどんどん減っていた</p>
+          <p class="case-after">交際が始まり、結婚を考える関係に！</p>
+        </div>
       </div>
-
-      <div class="impact-card impact-orange">
-        <span class="impact-tag">CASE 03</span>
-        <p class="impact-headline">誘っても断られていた女性</p>
-        <p class="impact-before">誘っても、いつも「忙しい」</p>
-        <p class="impact-note">自分から言わなければ<br>会えないと思っていました。</p>
-        <p class="impact-connector">そして、彼から</p>
-        <div class="impact-chat"><span class="impact-chat-tag">彼</span><span class="impact-chat-bubble">一緒にいてほしい</span></div>
-        <p class="impact-result">今度は彼の方から告白</p>
+      <div class="case-row">
+        <span class="case-num">03</span>
+        <div class="case-copy">
+          <p class="case-before">誘っても「忙しい」と断られていた</p>
+          <p class="case-after">彼から「一緒にいてほしい」と告白！</p>
+        </div>
       </div>
-
-      <div class="impact-card impact-pink">
-        <span class="impact-tag">CASE 04</span>
-        <p class="impact-headline">2年間、曖昧だった女性</p>
-        <p class="impact-before">2年間ずっと曖昧な関係</p>
-        <p class="impact-note">「私は都合のいい存在なのかな」<br>と悩み続けていました。</p>
-        <p class="impact-connector">そして、彼から</p>
-        <div class="impact-chat"><span class="impact-chat-tag">彼</span><span class="impact-chat-bubble">将来のことも考えている</span></div>
-        <p class="impact-result">「将来も考えて付き合ってほしい」と告白</p>
+      <div class="case-row">
+        <span class="case-num">04</span>
+        <div class="case-copy">
+          <p class="case-before">2年間ずっと曖昧な関係</p>
+          <p class="case-after">「将来を考えて付き合いたい」と言われる関係に！</p>
+        </div>
       </div>
     </div>
 
