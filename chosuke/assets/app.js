@@ -88,6 +88,12 @@ function slotTimes(start, end, step) {
   return out;
 }
 const slotKey = (date, time) => `${date}_${time}`;
+// 'YYYY-MM-DD_HH:MM' → '10/5(日) 10:00〜10:30'
+function slotLabel(ev, key) {
+  const [date, time] = key.split('_');
+  const end = fromMin(Math.min(toMin(time) + ev.slot_minutes, toMin(ev.end_time)));
+  return `${fmtDate(date)} ${time}〜${end}`;
+}
 function allKeys(ev) {
   const keys = [];
   for (const t of slotTimes(ev.start_time, ev.end_time, ev.slot_minutes)) {
@@ -256,8 +262,10 @@ function buildGrid(ev, className, fillCell) {
   const times = slotTimes(ev.start_time, ev.end_time, ev.slot_minutes);
   const head = h('tr', {}, h('th', { text: '' }), ev.dates.map(d => h('th', { text: fmtDate(d) })));
   const cells = new Map();
+  const timeTh = t => h('th', {}, t ? h('span', { class: 'tl', text: t }) : null);
+  const spacer = t => h('tr', { class: 'spacer' }, timeTh(t), ev.dates.map(() => h('td')));
   const body = times.map(t => h('tr', {},
-    h('th', { text: t }),
+    timeTh(t),
     ev.dates.map(d => {
       const key = slotKey(d, t);
       const td = h('td', { 'data-key': key });
@@ -265,7 +273,7 @@ function buildGrid(ev, className, fillCell) {
       fillCell(td, key);
       return td;
     })));
-  const table = h('table', { class: 'grid ' + className }, h('thead', {}, head), h('tbody', {}, body));
+  const table = h('table', { class: 'grid ' + className }, h('thead', {}, head), h('tbody', {}, spacer(''), body, spacer(fromMin(Math.min(toMin(times[times.length - 1]) + ev.slot_minutes, toMin(ev.end_time))))));
   return { wrap: h('div', { class: 'grid-wrap' }, table), cells };
 }
 
@@ -278,10 +286,13 @@ function answerGrid(ev, initialState) {
     td.textContent = v ? SYMBOLS[v] : '';
   };
   const { wrap, cells } = buildGrid(ev, 'answer-grid', paint);
+  const info = h('div', { class: 'slot-info muted', text: 'マスを触ると日時がここに表示されます' });
+  const show = key => { info.textContent = slotLabel(ev, key); };
 
   const apply = (key, v) => {
     if (v) state[key] = v; else delete state[key];
     paint(cells.get(key), key);
+    show(key);
   };
 
   // マウスは押してなぞる。タッチは長押し(LONG_PRESS_MS)してからなぞり、
@@ -352,7 +363,7 @@ function answerGrid(ev, initialState) {
   window.addEventListener('pointercancel', stop);
 
   return {
-    el: wrap,
+    el: h('div', {}, wrap, info),
     getState: () => ({ ...state }),
     setState(next) {
       state = { ...next };

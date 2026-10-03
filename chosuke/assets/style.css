@@ -11,7 +11,7 @@
   --maybe: #fff0a8;
   --best-ok: #1f9d55;
   --best-online: #2a6fd6;
-  --cell: 44px;
+  --cell: 38px;
 }
 
 * { box-sizing: border-box; }
@@ -104,29 +104,38 @@ button.block { width: 100%; }
 table.grid { border-collapse: separate; border-spacing: 0; }
 table.grid th, table.grid td {
   min-width: var(--cell);
-  height: var(--cell);
+  height: 34px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   text-align: center;
-  padding: 0 2px;
+  padding: 0;
   font-size: .85rem;
 }
 table.grid thead th {
-  position: sticky; top: 0; z-index: 2; background: #eef1f5; font-weight: 700; white-space: nowrap; padding: 0 6px;
+  position: sticky; top: 0; z-index: 2; background: #eef1f5; font-weight: 700; white-space: nowrap; padding: 0 2px;
+  font-size: .72rem; line-height: 1.2;
 }
 table.grid tbody th {
-  position: sticky; left: 0; z-index: 1; background: #eef1f5; font-weight: 600; white-space: nowrap; padding: 0 6px;
+  position: sticky; left: 0; z-index: 1; background: #eef1f5; min-width: 34px; width: 34px; padding: 0;
 }
-table.grid thead th:first-child { left: 0; z-index: 3; }
+table.grid thead th:first-child { left: 0; z-index: 3; min-width: 34px; width: 34px; }
+/* 時間は行の中央ではなく、行の上の罫線の高さに置く */
+table.grid .tl {
+  position: absolute; top: 0; right: 3px; transform: translateY(-50%);
+  font-size: .62rem; font-weight: 600; line-height: 1; color: var(--muted); white-space: nowrap;
+  background: #eef1f5; padding: 1px 0;
+}
+table.grid tr.spacer th, table.grid tr.spacer td { height: 8px; }
+.slot-info { margin: 6px 0 0; min-height: 1.5em; font-size: .9rem; }
 
-.answer-grid td { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: pointer; font-size: 1.15rem; }
+.answer-grid td { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: pointer; font-size: 1rem; }
 .grid-wrap.painting { outline: 3px solid #2a6fd6; outline-offset: -3px; }
 .v-ok { background: var(--ok); }
 .v-online { background: var(--online); }
 .v-maybe { background: var(--maybe); }
 
-.sum-grid td { cursor: pointer; font-size: .72rem; line-height: 1.15; min-width: 58px; }
-.sum-grid td .cnt { display: inline-block; white-space: nowrap; margin: 0 1px; }
+.sum-grid td { cursor: pointer; font-size: .6rem; line-height: 1.1; height: 38px; }
+.sum-grid td .cnt { display: block; white-space: nowrap; }
 .sum-grid td.best-ok { background: var(--best-ok); color: #fff; }
 .sum-grid td.best-online { background: var(--best-online); color: #fff; }
 .sum-grid td.lv1 { background: #e3f4ea; }

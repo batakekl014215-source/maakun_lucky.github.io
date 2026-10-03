@@ -107,7 +107,7 @@ function renderDetail() {
   }
   const none = answers.filter(a => !a.slots[pickedKey]).map(a => a.name);
   if (none.length) dl.append(h('dt', { text: `空欄＝不可（${none.length}人）` }), h('dd', { text: none.join('、') }));
-  detailBox.replaceChildren(h('h2', { text: `${fmtDate(date)} ${time}` }), answers.length ? dl : h('p', { class: 'muted', text: 'まだ回答がありません' }));
+  detailBox.replaceChildren(h('h2', { text: slotLabel(ev, pickedKey) }), answers.length ? dl : h('p', { class: 'muted', text: 'まだ回答がありません' }));
 }
 
 function renderNames() {
