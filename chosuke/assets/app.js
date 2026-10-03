@@ -301,6 +301,7 @@ function answerGrid(ev, initialState) {
   const startPaint = key => {
     paintValue = nextValue(key);
     painting = true;
+    wrap.classList.add('painting');
     lastKey = key;
     apply(key, paintValue);
   };
@@ -344,6 +345,7 @@ function answerGrid(ev, initialState) {
       clearPending();
     }
     painting = false;
+    wrap.classList.remove('painting');
     lastKey = null;
   };
   window.addEventListener('pointerup', stop);

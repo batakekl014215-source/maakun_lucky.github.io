@@ -120,6 +120,7 @@ table.grid tbody th {
 table.grid thead th:first-child { left: 0; z-index: 3; }
 
 .answer-grid td { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: pointer; font-size: 1.15rem; }
+.grid-wrap.painting { outline: 3px solid #2a6fd6; outline-offset: -3px; }
 .v-ok { background: var(--ok); }
 .v-online { background: var(--online); }
 .v-maybe { background: var(--maybe); }
