@@ -284,30 +284,68 @@ function answerGrid(ev, initialState) {
     paint(cells.get(key), key);
   };
 
+  // マウスは押してなぞる。タッチは長押し(LONG_PRESS_MS)してからなぞり、
+  // それ以外はブラウザのスクロールに任せる（動かさず離したときだけタップ扱い）
+  const LONG_PRESS_MS = 300;
+  const MOVE_TOLERANCE = 8;
   let painting = false;
   let paintValue = '';
   let lastKey = null;
+  let pending = null; // タッチ開始後、長押し成立前の状態
   const keyAt = (x, y) => {
     const el = document.elementFromPoint(x, y);
     const td = el && el.closest ? el.closest('td[data-key]') : null;
     return td && wrap.contains(td) ? td.dataset.key : null;
   };
+  const nextValue = key => CYCLE[(CYCLE.indexOf(state[key] || '') + 1) % CYCLE.length];
+  const startPaint = key => {
+    paintValue = nextValue(key);
+    painting = true;
+    lastKey = key;
+    apply(key, paintValue);
+  };
+  const clearPending = () => { if (pending) { clearTimeout(pending.timer); pending = null; } };
 
   wrap.addEventListener('pointerdown', e => {
     const key = keyAt(e.clientX, e.clientY);
     if (!key) return;
-    e.preventDefault();
-    paintValue = CYCLE[(CYCLE.indexOf(state[key] || '') + 1) % CYCLE.length];
-    painting = true;
-    lastKey = key;
-    apply(key, paintValue);
+    if (e.pointerType === 'mouse') {
+      e.preventDefault();
+      startPaint(key);
+      return;
+    }
+    clearPending();
+    pending = {
+      id: e.pointerId, key, x: e.clientX, y: e.clientY,
+      timer: setTimeout(() => {
+        const k = pending.key;
+        pending = null;
+        if (navigator.vibrate) navigator.vibrate(15);
+        startPaint(k);
+      }, LONG_PRESS_MS),
+    };
   });
   wrap.addEventListener('pointermove', e => {
+    if (pending && e.pointerId === pending.id &&
+        Math.hypot(e.clientX - pending.x, e.clientY - pending.y) > MOVE_TOLERANCE) clearPending(); // スクロール操作
     if (!painting) return;
     const key = keyAt(e.clientX, e.clientY);
     if (key && key !== lastKey) { lastKey = key; apply(key, paintValue); }
   });
-  const stop = () => { painting = false; lastKey = null; };
+  // なぞり入力中はスクロールさせない
+  wrap.addEventListener('touchmove', e => { if (painting && e.cancelable) e.preventDefault(); }, { passive: false });
+  wrap.addEventListener('contextmenu', e => e.preventDefault());
+  const stop = e => {
+    if (pending && e.type === 'pointerup' && e.pointerId === pending.id) {
+      const k = pending.key;
+      clearPending();
+      apply(k, nextValue(k)); // タップ
+    } else if (e.type === 'pointercancel') {
+      clearPending();
+    }
+    painting = false;
+    lastKey = null;
+  };
   window.addEventListener('pointerup', stop);
   window.addEventListener('pointercancel', stop);
 

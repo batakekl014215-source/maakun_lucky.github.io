@@ -43,7 +43,7 @@ async function init() {
       h('h2', { text: '回答する' }),
       editBar,
       h('label', { class: 'field' }, 'お名前', nameInput),
-      h('p', { class: 'muted', text: 'マスをタップで ⭕️→💻→△→空欄（空欄は不可の扱い）。なぞると同じ記号をまとめて入力できます（横にずらすときは日付・時間の見出しをスワイプ）。' }),
+      h('p', { class: 'muted', text: 'マスをタップで ⭕️→💻→△→空欄（空欄は不可の扱い）。マスを長押ししてからなぞると、同じ記号をまとめて入力できます（普通になぞると表がスクロールします）。' }),
       gridBox, saveErr, h('div', { style: 'margin-top:12px' }, saveBtn)),
     h('div', { class: 'card' },
       h('h2', { text: 'みんなの回答' }),
