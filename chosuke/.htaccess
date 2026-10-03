@@ -1,0 +1,13 @@
+# 検索エンジンに載せない
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# api/lib/（共通処理）への直接アクセスを拒否
+RewriteEngine On
+RewriteRule ^api/lib/ - [F,L]
+
+# ドット始まりのファイル、DB、仕様書への直接アクセスを拒否
+<FilesMatch "^\.|\.sqlite$|\.md$">
+    Require all denied
+</FilesMatch>
