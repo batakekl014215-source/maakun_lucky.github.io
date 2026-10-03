@@ -386,10 +386,9 @@ function summaryGrid(ev, answers, onCell, pickedKey) {
     if (total > 0 && going === total) td.classList.add(c.online === 0 ? 'best-ok' : 'best-online');
     else if (going > 0) td.classList.add(`lv${Math.min(3, Math.ceil(going / total * 3))}`);
     if (key === pickedKey) td.classList.add('picked');
-    // 大きい数字＝行ける人数（⭕️＋💻）。💻・△がいる場合だけ下に小さく添える
-    if (going) td.append(h('div', { class: 'going', text: String(going) }));
-    const sub = ['online', 'maybe'].filter(k => c[k]).map(k => `${SYMBOLS[k]}${c[k]}`).join(' ');
-    if (sub) td.append(h('div', { class: 'cnt', text: sub }));
+    for (const k of Object.keys(SYMBOLS)) {
+      if (c[k]) td.append(h('div', { class: 'cnt' }, h('span', { class: 'emo', text: SYMBOLS[k] }), h('span', { class: 'num', text: String(c[k]) })));
+    }
     td.addEventListener('click', () => onCell(key));
   });
   return wrap;

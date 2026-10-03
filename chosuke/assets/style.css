@@ -134,9 +134,10 @@ table.grid tr.spacer th, table.grid tr.spacer td { height: 8px; }
 .v-online { background: var(--online); }
 .v-maybe { background: var(--maybe); }
 
-.sum-grid td { cursor: pointer; height: 42px; line-height: 1.1; }
-.sum-grid td .going { font-size: 1.05rem; font-weight: 700; }
-.sum-grid td .cnt { font-size: .62rem; white-space: nowrap; }
+.sum-grid td { cursor: pointer; height: 44px; line-height: 1.15; }
+.sum-grid td .cnt { white-space: nowrap; }
+.sum-grid td .emo { font-size: .55rem; }
+.sum-grid td .num { font-size: .85rem; font-weight: 700; margin-left: 1px; }
 .sum-grid td.best-ok { background: var(--best-ok); color: #fff; }
 .sum-grid td.best-online { background: var(--best-online); color: #fff; }
 .sum-grid td.lv1 { background: #e3f4ea; }
