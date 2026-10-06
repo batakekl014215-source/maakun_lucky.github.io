@@ -55,6 +55,12 @@ SQL);
 
     $pdo->exec('CREATE INDEX IF NOT EXISTS idx_answers_event_id ON answers(event_id)');
 
+    // 回答の選択肢（既存DBには列を追加。既存イベントは3種類すべて）
+    $cols = array_column($pdo->query('PRAGMA table_info(events)')->fetchAll(), 'name');
+    if (!in_array('options', $cols, true)) {
+        $pdo->exec('ALTER TABLE events ADD COLUMN options TEXT NOT NULL DEFAULT \'["ok","online","maybe"]\'');
+    }
+
     // イベント作成の簡易レート制限用
     $pdo->exec(<<<'SQL'
 CREATE TABLE IF NOT EXISTS rate_limits (

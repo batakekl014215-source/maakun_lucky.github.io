@@ -150,7 +150,23 @@ function validate_event_input(array $b): array
         fail('マス目が多すぎます（最大' . SLOTS_MAX . 'マス）。候補日か時間帯を減らしてください');
     }
 
+    $options = $b['options'] ?? ANSWER_VALUES;
+    if (!is_array($options)) {
+        fail('回答の選択肢の形式が正しくありません');
+    }
+    foreach ($options as $o) {
+        if (!is_string($o) || !in_array($o, ANSWER_VALUES, true)) {
+            fail('回答の選択肢が正しくありません');
+        }
+    }
+    // 表示順を固定するため、定義順に並べ直す
+    $options = array_values(array_intersect(ANSWER_VALUES, $options));
+    if (count($options) < 1) {
+        fail('回答の選択肢を1つ以上選んでください');
+    }
+
     return [
+        'options' => $options,
         'title' => $title,
         'memo' => $memo,
         'dates' => $dates,
@@ -170,6 +186,7 @@ function event_to_array(array $row, bool $withToken = false): array
         'start_time' => $row['start_time'],
         'end_time' => $row['end_time'],
         'slot_minutes' => (int)$row['slot_minutes'],
+        'options' => json_decode($row['options'] ?? '', true) ?: ANSWER_VALUES,
         'created_at' => $row['created_at'],
         'updated_at' => $row['updated_at'],
     ];
@@ -262,9 +279,10 @@ function validate_slots($slots, array $event): array
     }
     $dates = json_decode($event['dates'], true) ?: [];
     $valid = array_flip(slot_keys($dates, $event['start_time'], $event['end_time'], (int)$event['slot_minutes']));
+    $options = json_decode($event['options'] ?? '', true) ?: ANSWER_VALUES;
     $out = [];
     foreach ($slots as $key => $value) {
-        if (!is_string($key) || !isset($valid[$key]) || !is_string($value) || !in_array($value, ANSWER_VALUES, true)) {
+        if (!is_string($key) || !isset($valid[$key]) || !is_string($value) || !in_array($value, $options, true)) {
             fail('回答の内容が正しくありません');
         }
         $out[$key] = $value;

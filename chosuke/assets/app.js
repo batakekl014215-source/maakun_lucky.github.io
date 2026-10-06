@@ -2,8 +2,13 @@
 'use strict';
 
 const SYMBOLS = { ok: '⭕️', online: '💻', maybe: '△' };
+const ICON_FILES = { ok: 'maru', online: 'online', maybe: 'sankaku' };
+// 記号のイラスト（chosuke-img/small/）
+const symImg = k => h('img', { class: 'sym', src: `chosuke-img/small/${ICON_FILES[k]}.png`, alt: SYMBOLS[k], draggable: 'false' });
 const LABELS = { ok: '対面OK', online: 'オンラインのみ', maybe: '微妙' };
-const CYCLE = ['', 'ok', 'online', 'maybe'];
+const ALL_OPTIONS = ['ok', 'online', 'maybe'];
+// イベントで選べる記号（未設定の古いデータは3種類すべて）
+const optionsOf = ev => (ev && ev.options && ev.options.length ? ev.options : ALL_OPTIONS);
 const LIMITS = { title: 50, memo: 200, name: 20, dates: 31, slots: 500 };
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
 
@@ -31,9 +36,9 @@ function toast(msg) {
   setTimeout(() => t.remove(), 2200);
 }
 
-function legend() {
+function legend(options) {
   return h('div', { class: 'legend' },
-    Object.keys(SYMBOLS).map(k => h('span', { class: 'v-' + k, text: `${SYMBOLS[k]}${LABELS[k]}` })),
+    options.map(k => h('span', { class: 'v-' + k }, symImg(k), LABELS[k])),
     h('span', { text: '空欄＝不可' }));
 }
 
@@ -191,6 +196,12 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
   const end = h('select', {}, timeOptions(15, 24 * 60, initial.end_time));
   const step = h('select', { disabled: !!lockSlot },
     [[15, '15分'], [30, '30分'], [60, '1時間']].map(([v, l]) => h('option', { value: v, selected: v === initial.slot_minutes }, l)));
+  const optBoxes = ALL_OPTIONS.map(k => h('input', { type: 'checkbox', value: k, checked: (initial.options || ALL_OPTIONS).includes(k) }));
+  const optField = h('div', { class: 'field' },
+    h('div', { style: 'font-weight:600;font-size:.95rem', text: '回答の選択肢' }),
+    h('div', { class: 'opt-list' }, ALL_OPTIONS.map((k, i) =>
+      h('label', { class: 'opt v-' + k }, optBoxes[i], symImg(k), LABELS[k]))),
+    h('span', { class: 'hint', text: '参加者が選べる記号です（1つ以上）。空欄は常に「不可」の扱いです' }));
   const info = h('div', { class: 'muted' });
   const err = h('div', { class: 'error' });
   const btn = h('button', { type: 'submit', class: 'primary block' }, submitLabel);
@@ -205,6 +216,7 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
       start_time: start.value,
       end_time: end.value,
       slot_minutes: Number(step.value),
+      options: ALL_OPTIONS.filter((k, i) => optBoxes[i].checked),
     };
   }
   function refresh() {
@@ -227,7 +239,7 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
     h('label', { class: 'field' }, '時間の刻み',
       step,
       lockSlot ? h('span', { class: 'hint', text: '回答がある場合は変更できません' }) : null),
-    info, err, btn);
+    optField, info, err, btn);
 
   el.addEventListener('submit', async e => {
     e.preventDefault();
@@ -248,6 +260,7 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
   function validate(v) {
     if (!v.title) return 'タイトルを入力してください';
     if (v.dates.length < 1) return '候補日を選択してください';
+    if (v.options.length < 1) return '回答の選択肢を1つ以上選んでください';
     if (toMin(v.end_time) <= toMin(v.start_time)) return '終了時刻は開始時刻より後にしてください';
     if (slotTimes(v.start_time, v.end_time, v.slot_minutes).length * v.dates.length > LIMITS.slots) {
       return `マス目が多すぎます（最大${LIMITS.slots}マス）。候補日か時間帯を減らしてください`;
@@ -283,7 +296,7 @@ function answerGrid(ev, initialState) {
   const paint = (td, key) => {
     const v = state[key] || '';
     td.className = v ? 'v-' + v : '';
-    td.textContent = v ? SYMBOLS[v] : '';
+    td.replaceChildren(...(v ? [symImg(v)] : []));
   };
   const { wrap, cells } = buildGrid(ev, 'answer-grid', paint);
   const info = h('div', { class: 'slot-info muted', text: 'マスを触ると日時がここに表示されます' });
@@ -308,7 +321,8 @@ function answerGrid(ev, initialState) {
     const td = el && el.closest ? el.closest('td[data-key]') : null;
     return td && wrap.contains(td) ? td.dataset.key : null;
   };
-  const nextValue = key => CYCLE[(CYCLE.indexOf(state[key] || '') + 1) % CYCLE.length];
+  const cycle = ['', ...optionsOf(ev)];
+  const nextValue = key => cycle[(cycle.indexOf(state[key] || '') + 1) % cycle.length];
   const startPaint = key => {
     paintValue = nextValue(key);
     painting = true;
@@ -386,8 +400,8 @@ function summaryGrid(ev, answers, onCell, pickedKey) {
     if (total > 0 && going === total) td.classList.add(c.online === 0 ? 'best-ok' : 'best-online');
     else if (going > 0) td.classList.add(`lv${Math.min(3, Math.ceil(going / total * 3))}`);
     if (key === pickedKey) td.classList.add('picked');
-    for (const k of Object.keys(SYMBOLS)) {
-      if (c[k]) td.append(h('div', { class: 'cnt' }, h('span', { class: 'emo', text: SYMBOLS[k] }), h('span', { class: 'num', text: String(c[k]) })));
+    for (const k of optionsOf(ev)) {
+      if (c[k]) td.append(h('div', { class: 'cnt' }, h('span', { class: 'emo' }, symImg(k)), h('span', { class: 'num', text: String(c[k]) })));
     }
     td.addEventListener('click', () => onCell(key));
   });

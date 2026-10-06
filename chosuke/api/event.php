@@ -30,8 +30,8 @@ switch ($method) {
         $id = random_hex(12);
         $adminToken = random_hex(32);
         $now = now_str();
-        $st = $pdo->prepare('INSERT INTO events (id, admin_token, title, memo, dates, start_time, end_time, slot_minutes, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-        $st->execute([$id, $adminToken, $in['title'], $in['memo'], json_encode($in['dates']), $in['start_time'], $in['end_time'], $in['slot_minutes'], $now, $now]);
+        $st = $pdo->prepare('INSERT INTO events (id, admin_token, title, memo, dates, start_time, end_time, slot_minutes, options, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $st->execute([$id, $adminToken, $in['title'], $in['memo'], json_encode($in['dates']), $in['start_time'], $in['end_time'], $in['slot_minutes'], json_encode($in['options']), $now, $now]);
         json_out(['id' => $id, 'admin_token' => $adminToken], 201);
 
     case 'PUT':
@@ -46,8 +46,8 @@ switch ($method) {
         }
 
         $pdo->beginTransaction();
-        $st = $pdo->prepare('UPDATE events SET title = ?, memo = ?, dates = ?, start_time = ?, end_time = ?, slot_minutes = ?, updated_at = ? WHERE id = ?');
-        $st->execute([$in['title'], $in['memo'], json_encode($in['dates']), $in['start_time'], $in['end_time'], $in['slot_minutes'], now_str(), $row['id']]);
+        $st = $pdo->prepare('UPDATE events SET title = ?, memo = ?, dates = ?, start_time = ?, end_time = ?, slot_minutes = ?, options = ?, updated_at = ? WHERE id = ?');
+        $st->execute([$in['title'], $in['memo'], json_encode($in['dates']), $in['start_time'], $in['end_time'], $in['slot_minutes'], json_encode($in['options']), now_str(), $row['id']]);
 
         // 範囲外になったマスの回答を削除する
         $valid = array_flip(slot_keys($in['dates'], $in['start_time'], $in['end_time'], $in['slot_minutes']));
@@ -56,7 +56,7 @@ switch ($method) {
         $upd = $pdo->prepare('UPDATE answers SET slots = ?, updated_at = ? WHERE id = ?');
         foreach ($list->fetchAll() as $a) {
             $slots = json_decode($a['slots'], true) ?: [];
-            $kept = array_intersect_key($slots, $valid);
+            $kept = array_filter(array_intersect_key($slots, $valid), fn($v) => in_array($v, $in['options'], true));
             if (count($kept) !== count($slots)) {
                 $upd->execute([json_encode((object)$kept), now_str(), $a['id']]);
             }

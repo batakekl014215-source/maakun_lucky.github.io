@@ -43,7 +43,7 @@ async function init() {
       h('h2', { text: '回答する' }),
       editBar,
       h('label', { class: 'field' }, 'お名前', nameInput),
-      h('p', { class: 'muted', text: 'マスをタップで ⭕️→💻→△→空欄（空欄は不可の扱い）。マスを長押ししてからなぞると、同じ記号をまとめて入力できます（普通になぞると表がスクロールします）。' }),
+      h('p', { class: 'muted' }, 'マスをタップで ', optionsOf(ev).flatMap(k => [symImg(k), '→']), '空欄（空欄は不可の扱い）。マスを長押ししてからなぞると、同じ記号をまとめて入力できます（普通になぞると表がスクロールします）。'),
       gridBox, saveErr, h('div', { style: 'margin-top:12px' }, saveBtn)),
     h('div', { class: 'card' },
       h('h2', { text: 'みんなの回答' }),
@@ -52,7 +52,7 @@ async function init() {
     h('div', { class: 'card' },
       h('h2', { text: '回答者（タップで修正）' }),
       namesBox),
-    legend());
+    legend(optionsOf(ev)));
 
   // この端末で保存した自分の回答があれば読み込む
   const mine = answers.find(a => store.mine[a.id]);
@@ -101,9 +101,9 @@ function renderDetail() {
   if (!pickedKey) { detailBox.replaceChildren(); return; }
   const [date, time] = pickedKey.split('_');
   const dl = h('dl', {});
-  for (const k of Object.keys(SYMBOLS)) {
+  for (const k of optionsOf(ev)) {
     const names = answers.filter(a => a.slots[pickedKey] === k).map(a => a.name);
-    if (names.length) dl.append(h('dt', { text: `${SYMBOLS[k]} ${LABELS[k]}（${names.length}人）` }), h('dd', { text: names.join('、') }));
+    if (names.length) dl.append(h('dt', {}, symImg(k), ` ${LABELS[k]}（${names.length}人）`), h('dd', { text: names.join('、') }));
   }
   const none = answers.filter(a => !a.slots[pickedKey]).map(a => a.name);
   if (none.length) dl.append(h('dt', { text: `空欄＝不可（${none.length}人）` }), h('dd', { text: none.join('、') }));
