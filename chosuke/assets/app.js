@@ -199,10 +199,10 @@ function timeInput(listId, selected) {
   });
   return input;
 }
-function timeDatalist(id) {
-  const dl = h('datalist', { id });
-  for (let t = 0; t <= LIST_MAX_MIN; t += 15) dl.append(h('option', { value: fromMin(t) }));
-  return dl;
+// 候補は選んだ時間の刻みごと
+function fillTimeDatalist(dl, step) {
+  dl.replaceChildren();
+  for (let t = 0; t <= LIST_MAX_MIN; t += step) dl.append(h('option', { value: fromMin(t) }));
 }
 
 function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
@@ -214,6 +214,9 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
   const end = timeInput('time-list', initial.end_time);
   const step = h('select', { disabled: !!lockSlot },
     [[15, '15分'], [30, '30分'], [60, '1時間']].map(([v, l]) => h('option', { value: v, selected: v === initial.slot_minutes }, l)));
+  const timeList = h('datalist', { id: 'time-list' });
+  fillTimeDatalist(timeList, Number(step.value));
+  step.addEventListener('change', () => fillTimeDatalist(timeList, Number(step.value)));
   const optBoxes = ALL_OPTIONS.map(k => h('input', { type: 'checkbox', value: k, checked: (initial.options || ALL_OPTIONS).includes(k) }));
   const optField = h('div', { class: 'field' },
     h('div', { style: 'font-weight:600;font-size:.95rem', text: '回答の選択肢' }),
@@ -251,13 +254,13 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
     h('label', { class: 'field' }, 'タイトル ', h('span', { class: 'hint', text: `（必須・${LIMITS.title}文字以内）` }), title),
     h('label', { class: 'field' }, 'メモ ', h('span', { class: 'hint', text: `（${LIMITS.memo}文字以内）` }), memo),
     h('div', { class: 'field' }, h('div', { style: 'font-weight:600;font-size:.95rem', text: '候補日（複数選択）' }), cal.el),
-    h('div', { class: 'row' },
-      h('label', { class: 'field' }, '開始時刻', start),
-      h('label', { class: 'field' }, '終了時刻', end),
-      timeDatalist('time-list')),
     h('label', { class: 'field' }, '時間の刻み',
       step,
       lockSlot ? h('span', { class: 'hint', text: '回答がある場合は変更できません' }) : null),
+    h('div', { class: 'row' },
+      h('label', { class: 'field' }, '開始時刻', start),
+      h('label', { class: 'field' }, '終了時刻', end),
+      timeList),
     optField, info, err, btn);
 
   el.addEventListener('submit', async e => {
