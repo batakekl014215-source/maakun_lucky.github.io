@@ -252,7 +252,7 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
     h('label', { class: 'field' }, 'メモ ', h('span', { class: 'hint', text: `（${LIMITS.memo}文字以内）` }), memo),
     h('div', { class: 'field' }, h('div', { style: 'font-weight:600;font-size:.95rem', text: '候補日（複数選択）' }), cal.el),
     h('div', { class: 'row' },
-      h('label', { class: 'field' }, '開始時刻 ', h('span', { class: 'hint', text: '（候補は27:00まで・48:00までは直接入力OK）' }), start),
+      h('label', { class: 'field' }, '開始時刻', start),
       h('label', { class: 'field' }, '終了時刻', end),
       timeDatalist('time-list')),
     h('label', { class: 'field' }, '時間の刻み',
