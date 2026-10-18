@@ -178,13 +178,30 @@ function calendarPicker(selected, onChange) {
 }
 
 // ---- イベント入力フォーム（作成・管理で共用） ----
-function timeOptions(from, to, selected) {
-  const opts = [];
-  for (let t = from; t <= to; t += 15) {
-    const v = fromMin(t);
-    opts.push(h('option', { value: v, selected: v === selected }, v));
-  }
-  return opts;
+const MAX_TIME_MIN = 27 * 60;
+// 候補つきの手入力欄（00:00〜27:00）。'9' '9:5' '930' などの入力も 'HH:MM' に整える
+function normalizeTime(raw) {
+  const s = String(raw).trim().replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/[：]/g, ':');
+  let m = s.match(/^(\d{1,2}):(\d{1,2})$/) || s.match(/^(\d{1,2})()$/) || s.match(/^(\d{1,2})(\d{2})$/);
+  if (!m) return null;
+  const min = Number(m[2] || 0);
+  const t = Number(m[1]) * 60 + min;
+  return min < 60 && t <= MAX_TIME_MIN ? fromMin(t) : null;
+}
+function timeInput(listId, selected) {
+  const input = h('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', list: listId, value: selected, placeholder: '例：18:00' });
+  input.addEventListener('focus', () => { input.dataset.prev = input.value; input.value = ''; });
+  input.addEventListener('blur', () => {
+    const v = normalizeTime(input.value);
+    input.value = v || input.dataset.prev || selected;
+    input.dispatchEvent(new Event('change'));
+  });
+  return input;
+}
+function timeDatalist(id) {
+  const dl = h('datalist', { id });
+  for (let t = 0; t <= MAX_TIME_MIN; t += 15) dl.append(h('option', { value: fromMin(t) }));
+  return dl;
 }
 
 function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
@@ -192,8 +209,8 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
   const title = h('input', { type: 'text', maxlength: LIMITS.title, value: initial.title || '', placeholder: '例：10月の飲み会' });
   const memo = h('textarea', { maxlength: LIMITS.memo, placeholder: '場所・目的など（任意）' });
   memo.value = initial.memo || '';
-  const start = h('select', {}, timeOptions(0, 23 * 60 + 45, initial.start_time));
-  const end = h('select', {}, timeOptions(15, 24 * 60, initial.end_time));
+  const start = timeInput('time-list', initial.start_time);
+  const end = timeInput('time-list', initial.end_time);
   const step = h('select', { disabled: !!lockSlot },
     [[15, '15分'], [30, '30分'], [60, '1時間']].map(([v, l]) => h('option', { value: v, selected: v === initial.slot_minutes }, l)));
   const optBoxes = ALL_OPTIONS.map(k => h('input', { type: 'checkbox', value: k, checked: (initial.options || ALL_OPTIONS).includes(k) }));
@@ -234,8 +251,9 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
     h('label', { class: 'field' }, 'メモ ', h('span', { class: 'hint', text: `（${LIMITS.memo}文字以内）` }), memo),
     h('div', { class: 'field' }, h('div', { style: 'font-weight:600;font-size:.95rem', text: '候補日（複数選択）' }), cal.el),
     h('div', { class: 'row' },
-      h('label', { class: 'field' }, '開始時刻', start),
-      h('label', { class: 'field' }, '終了時刻', end)),
+      h('label', { class: 'field' }, '開始時刻 ', h('span', { class: 'hint', text: '（27:00まで・直接入力もOK）' }), start),
+      h('label', { class: 'field' }, '終了時刻', end),
+      timeDatalist('time-list')),
     h('label', { class: 'field' }, '時間の刻み',
       step,
       lockSlot ? h('span', { class: 'hint', text: '回答がある場合は変更できません' }) : null),

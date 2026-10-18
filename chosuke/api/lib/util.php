@@ -131,10 +131,10 @@ function validate_event_input(array $b): array
 
     $start = $b['start_time'] ?? '';
     $end = $b['end_time'] ?? '';
-    if (!is_string($start) || !preg_match('/^([01]\d|2[0-3]):[0-5]\d$/', $start)) {
+    if (!is_string($start) || !preg_match('/^(([01]\d|2[0-6]):[0-5]\d)$/', $start)) {
         fail('開始時刻が正しくありません');
     }
-    if (!is_string($end) || !preg_match('/^(([01]\d|2[0-3]):[0-5]\d|24:00)$/', $end)) {
+    if (!is_string($end) || !preg_match('/^(([01]\d|2[0-6]):[0-5]\d|27:00)$/', $end)) {
         fail('終了時刻が正しくありません');
     }
     if (time_to_minutes($start) >= time_to_minutes($end)) {
