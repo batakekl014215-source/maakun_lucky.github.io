@@ -178,7 +178,8 @@ function calendarPicker(selected, onChange) {
 }
 
 // ---- イベント入力フォーム（作成・管理で共用） ----
-const MAX_TIME_MIN = 27 * 60;
+const MAX_TIME_MIN = 48 * 60;     // 手入力の上限
+const LIST_MAX_MIN = 27 * 60;     // 候補に出す上限
 // 候補つきの手入力欄（00:00〜27:00）。'9' '9:5' '930' などの入力も 'HH:MM' に整える
 function normalizeTime(raw) {
   const s = String(raw).trim().replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/[：]/g, ':');
@@ -200,7 +201,7 @@ function timeInput(listId, selected) {
 }
 function timeDatalist(id) {
   const dl = h('datalist', { id });
-  for (let t = 0; t <= MAX_TIME_MIN; t += 15) dl.append(h('option', { value: fromMin(t) }));
+  for (let t = 0; t <= LIST_MAX_MIN; t += 15) dl.append(h('option', { value: fromMin(t) }));
   return dl;
 }
 
@@ -251,7 +252,7 @@ function eventForm({ initial, submitLabel, lockSlot, onSubmit }) {
     h('label', { class: 'field' }, 'メモ ', h('span', { class: 'hint', text: `（${LIMITS.memo}文字以内）` }), memo),
     h('div', { class: 'field' }, h('div', { style: 'font-weight:600;font-size:.95rem', text: '候補日（複数選択）' }), cal.el),
     h('div', { class: 'row' },
-      h('label', { class: 'field' }, '開始時刻 ', h('span', { class: 'hint', text: '（27:00まで・直接入力もOK）' }), start),
+      h('label', { class: 'field' }, '開始時刻 ', h('span', { class: 'hint', text: '（候補は27:00まで・48:00までは直接入力OK）' }), start),
       h('label', { class: 'field' }, '終了時刻', end),
       timeDatalist('time-list')),
     h('label', { class: 'field' }, '時間の刻み',
