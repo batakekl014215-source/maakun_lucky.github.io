@@ -13,6 +13,9 @@ let pickedKey = null;
 let grid = null;
 
 const nameInput = h('input', { type: 'text', maxlength: LIMITS.name, placeholder: '名前（20文字以内）', value: store.name || '' });
+const commentInput = h('textarea', { maxlength: LIMITS.comment, placeholder: '一言あればどうぞ（任意・200文字以内）' });
+commentInput.value = '';
+const commentsBox = h('div', { class: 'comments' });
 const editBar = h('div', { class: 'edit-bar' });
 const gridBox = h('div');
 const saveErr = h('div', { class: 'error' });
@@ -44,11 +47,14 @@ async function init() {
       editBar,
       h('label', { class: 'field' }, 'お名前', nameInput),
       h('p', { class: 'muted' }, 'マスをタップで ', optionsOf(ev).flatMap(k => [symImg(k), '→']), '空欄（空欄は不可の扱い）。マスを長押ししてからなぞると、同じ記号をまとめて入力できます（普通になぞると表がスクロールします）。'),
-      gridBox, saveErr, h('div', { style: 'margin-top:12px' }, saveBtn)),
+      gridBox,
+      h('label', { class: 'field', style: 'margin-top:12px' }, 'コメント ', h('span', { class: 'hint', text: '（任意）' }), commentInput),
+      saveErr, h('div', { style: 'margin-top:12px' }, saveBtn)),
     h('div', { class: 'card' },
       h('h2', { text: 'みんなの回答' }),
       summaryBox,
-      detailBox),
+      detailBox,
+      commentsBox),
     h('div', { class: 'card' },
       h('h2', { text: '回答者（タップで修正）' }),
       namesBox),
@@ -63,6 +69,7 @@ async function init() {
 function renderAll() {
   summaryBox.replaceChildren(summaryGrid(ev, answers, onCell, pickedKey));
   renderDetail();
+  renderComments();
   renderNames();
 }
 
@@ -80,6 +87,7 @@ function renderEditBar() {
 function startEdit(a) {
   editingId = a.id;
   nameInput.value = a.name;
+  commentInput.value = a.comment || '';
   grid.setState(a.slots);
   saveErr.textContent = '';
   renderEditBar();
@@ -88,6 +96,7 @@ function startEdit(a) {
 function startNew() {
   editingId = null;
   nameInput.value = '';
+  commentInput.value = '';
   grid.setState({});
   renderEditBar();
 }
@@ -110,6 +119,12 @@ function renderDetail() {
   detailBox.replaceChildren(h('h2', { text: slotLabel(ev, pickedKey) }), answers.length ? dl : h('p', { class: 'muted', text: 'まだ回答がありません' }));
 }
 
+function renderComments() {
+  const list = answers.filter(a => a.comment);
+  commentsBox.replaceChildren(...(list.length ? [h('h2', { text: 'コメント' }), ...list.map(a =>
+    h('div', { class: 'comment' }, h('b', { text: a.name }), h('div', { class: 'comment-text', text: a.comment })))] : []));
+}
+
 function renderNames() {
   if (!answers.length) {
     namesBox.replaceChildren(h('span', { class: 'muted', text: 'まだ回答がありません' }));
@@ -127,12 +142,13 @@ async function save() {
   const name = nameInput.value.trim();
   if (!name) { saveErr.textContent = '名前を入力してください'; return; }
   const slots = grid.getState();
+  const comment = commentInput.value.trim();
   saveBtn.disabled = true;
   try {
     if (editingId != null) {
-      await api('answer.php', { query: { id: editingId }, body: { action: 'update', name, slots, edit_key: store.mine[editingId] || '' } });
+      await api('answer.php', { query: { id: editingId }, body: { action: 'update', name, comment, slots, edit_key: store.mine[editingId] || '' } });
     } else {
-      const r = await api('answer.php', { body: { event_id: eventId, name, slots } });
+      const r = await api('answer.php', { body: { event_id: eventId, name, comment, slots } });
       store.mine[r.id] = r.edit_key;
       editingId = r.id;
     }

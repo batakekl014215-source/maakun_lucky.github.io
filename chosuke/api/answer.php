@@ -31,14 +31,15 @@ switch ($method) {
             fail('イベントが見つかりません', 404);
         }
         $name = clean_text($body['name'] ?? '', NAME_MAX, '名前', true);
+        $comment = clean_text($body['comment'] ?? '', COMMENT_MAX, 'コメント', false);
         $slots = validate_slots($body['slots'] ?? null, $event);
         if (count_answers($pdo, $event['id']) >= ANSWERS_MAX) {
             fail('回答者の上限（' . ANSWERS_MAX . '人）に達しています', 409);
         }
         $editKey = random_hex(16);
         $now = now_str();
-        $st = $pdo->prepare('INSERT INTO answers (event_id, name, edit_key, slots, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)');
-        $st->execute([$event['id'], $name, $editKey, json_encode((object)$slots), $now, $now]);
+        $st = $pdo->prepare('INSERT INTO answers (event_id, name, comment, edit_key, slots, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $st->execute([$event['id'], $name, $comment, $editKey, json_encode((object)$slots), $now, $now]);
         json_out(['id' => (int)$pdo->lastInsertId(), 'edit_key' => $editKey], 201);
 
     case 'PUT':
@@ -49,9 +50,10 @@ switch ($method) {
         }
         $event = find_event_by_id($pdo, $answer['event_id']);
         $name = clean_text($body['name'] ?? '', NAME_MAX, '名前', true);
+        $comment = clean_text($body['comment'] ?? '', COMMENT_MAX, 'コメント', false);
         $slots = validate_slots($body['slots'] ?? null, $event);
-        $st = $pdo->prepare('UPDATE answers SET name = ?, slots = ?, updated_at = ? WHERE id = ?');
-        $st->execute([$name, json_encode((object)$slots), now_str(), $answer['id']]);
+        $st = $pdo->prepare('UPDATE answers SET name = ?, comment = ?, slots = ?, updated_at = ? WHERE id = ?');
+        $st->execute([$name, $comment, json_encode((object)$slots), now_str(), $answer['id']]);
         json_out(['answer' => answer_to_array(find_answer($pdo, $answer['id']))]);
 
     case 'DELETE':

@@ -61,6 +61,12 @@ SQL);
         $pdo->exec('ALTER TABLE events ADD COLUMN options TEXT NOT NULL DEFAULT \'["ok","online","maybe"]\'');
     }
 
+    // 回答へのコメント（既存DBには列を追加）
+    $acols = array_column($pdo->query('PRAGMA table_info(answers)')->fetchAll(), 'name');
+    if (!in_array('comment', $acols, true)) {
+        $pdo->exec('ALTER TABLE answers ADD COLUMN comment TEXT NOT NULL DEFAULT \'\'');
+    }
+
     // イベント作成の簡易レート制限用
     $pdo->exec(<<<'SQL'
 CREATE TABLE IF NOT EXISTS rate_limits (

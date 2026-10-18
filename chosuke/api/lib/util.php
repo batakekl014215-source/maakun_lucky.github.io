@@ -231,6 +231,7 @@ function answer_to_array(array $row): array
         'id' => (int)$row['id'],
         'event_id' => $row['event_id'],
         'name' => $row['name'],
+        'comment' => $row['comment'] ?? '',
         'slots' => (object)(is_array($slots) ? $slots : []),
         'created_at' => $row['created_at'],
         'updated_at' => $row['updated_at'],

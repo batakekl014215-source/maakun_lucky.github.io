@@ -15,6 +15,7 @@ define('DB_PATH', DATA_DIR . '/chousei.sqlite');
 const TITLE_MAX = 50;
 const MEMO_MAX = 200;
 const NAME_MAX = 20;
+const COMMENT_MAX = 200;
 const DATES_MAX = 31;
 const SLOTS_MAX = 500;        // 日数×時間枠の最大マス数
 const ANSWERS_MAX = 30;       // 1イベントあたりの最大回答者数

@@ -9,7 +9,7 @@ const LABELS = { ok: '対面OK', online: 'オンラインのみ', maybe: '微妙
 const ALL_OPTIONS = ['ok', 'online', 'maybe'];
 // イベントで選べる記号（未設定の古いデータは3種類すべて）
 const optionsOf = ev => (ev && ev.options && ev.options.length ? ev.options : ALL_OPTIONS);
-const LIMITS = { title: 50, memo: 200, name: 20, dates: 31, slots: 500 };
+const LIMITS = { title: 50, memo: 200, name: 20, comment: 200, dates: 31, slots: 500 };
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
 
 // ---- DOM ----
