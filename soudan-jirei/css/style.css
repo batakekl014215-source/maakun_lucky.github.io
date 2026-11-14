@@ -1,0 +1,246 @@
+/* レイアウト・吹き出し・帯などのスタイル。色や余白の値は tokens.css の変数を使う。 */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-body);
+  background:
+    radial-gradient(120% 60% at 0% 0%, var(--bg-glow) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, var(--bg-page) 0%, var(--bg-page-end) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+.page {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 var(--page-pad) calc(56px + env(safe-area-inset-bottom));
+  overflow-x: clip;
+}
+
+/* ===== ① ヒーロー ===== */
+.hero {
+  margin-top: 24px;
+  aspect-ratio: 349 / 196;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+  /* 仮: 写真が入るまでのグラデーション。assets/hero.jpg を置いたら下の行を有効化 */
+  background: linear-gradient(135deg, #6f5b53 0%, #b0907d 55%, #e4c8b2 100%);
+  /* background: center / cover url("../assets/hero.jpg"); */
+}
+.hero__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 34px;
+  letter-spacing: .12em;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,.28);
+}
+
+/* ===== ② イントロ ===== */
+.intro { position: relative; margin: 36px 0 12px; padding-bottom: 96px; }
+.intro__bubble {
+  position: relative;
+  width: 84%;
+  min-height: 170px;
+  padding: 38px 30px 54px 40px;
+}
+.intro__line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.intro__text {
+  position: relative;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-line;
+  color: var(--text-body);
+}
+.intro__char {
+  position: absolute;
+  right: -6px; bottom: -8px;
+  width: 170px; height: auto;
+}
+
+/* ===== ③ ジャンル ===== */
+.genre { scroll-margin-top: 8px; }
+.genre { scroll-margin-top: 0; }
+.band {
+  margin: 44px calc(-1 * var(--page-pad)) 0;
+  height: 62px;
+  display: grid; place-items: center;
+  background: var(--band);
+  color: var(--band-text);
+}
+.band__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: .1em;
+}
+.relation {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+/* ===== 事例カード ===== */
+.card { margin-top: 40px; }
+.card__head {
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 800;
+  text-align: center;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  color: var(--text-body);
+}
+
+/* ===== LINE風チャット（REQUIREMENT.md 3章） ===== */
+.chat {
+  background: var(--chat-bg);
+  border-radius: 4px;
+  padding: 12px 8px 14px;
+}
+.chat__date { text-align: center; margin: 0 0 10px; }
+.chat__date span {
+  display: inline-block;
+  padding: 2px 12px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #fff;
+  background: rgba(70, 90, 110, .45);
+  border-radius: 999px;
+}
+.chat__body { position: relative; }
+.chat__body.is-collapsed { max-height: 360px; overflow: hidden; }
+.chat__body.is-collapsed::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 96px;
+  background: linear-gradient(180deg, rgba(202,213,224,0) 0%, var(--chat-bg) 88%);
+  pointer-events: none;
+}
+
+.row { display: flex; align-items: flex-end; gap: 6px; margin-top: 6px; }
+.row:first-child { margin-top: 0; }
+.row.is-gap { margin-top: 16px; }     /* 相談 → 返信 の切り替わり */
+.row--me { justify-content: flex-end; }
+.row--them { justify-content: flex-start; align-items: flex-start; gap: 8px; }
+
+.bubble {
+  position: relative;
+  max-width: 70%;
+  padding: 10px 13px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-chat);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  border-radius: 15px;
+}
+.bubble--me { background: var(--bubble-me); }
+.bubble--them { background: var(--bubble-them); }
+.bubble--me.has-tail { border-top-right-radius: 4px; }
+.bubble--them.has-tail { border-top-left-radius: 4px; }
+.bubble--me.has-tail::before,
+.bubble--them.has-tail::before {
+  content: ""; position: absolute; top: 0;
+  width: 9px; height: 11px;
+}
+.bubble--me.has-tail::before {
+  right: -6px;
+  background: var(--bubble-me);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.bubble--them.has-tail::before {
+  left: -6px;
+  background: var(--bubble-them);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.avatar {
+  flex: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #9AA7B5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  display: grid; place-items: center;
+  /* assets/avatar.png を置いたら: background: center / cover url("../assets/avatar.png"); */
+}
+.avatar-gap { flex: none; width: 36px; }
+
+.meta {
+  flex: none;
+  font-size: 11px;
+  line-height: 1.25;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.row--me .meta { text-align: right; }
+
+/* 続きを読む */
+.more {
+  display: block;
+  margin: 12px auto 0;
+  padding: 9px 24px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--band);
+  background: rgba(255,255,255,.7);
+  border: 1.5px solid var(--band);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.more:focus-visible { outline: 3px solid rgba(166,75,151,.4); outline-offset: 2px; }
+.more[hidden] { display: none; }
+
+/* ===== ④ フッターメッセージ ===== */
+.footer-msg {
+  margin: 56px 0 28px;
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: pre-line;
+  color: var(--text-body);
+}
+
+/* ===== 右端の現在位置インジケーター（2-2） ===== */
+.indicator {
+  position: fixed;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.indicator.is-visible { opacity: 1; pointer-events: auto; }
+.indicator a {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 68px;
+  white-space: nowrap;
+  margin: 2px 0;
+  border-radius: 10px 0 0 10px;
+  font-size: 11px; font-weight: 700; line-height: 1;
+  letter-spacing: .08em;
+    text-decoration: none;
+  color: var(--band);
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(166, 75, 151, .35);
+  border-right: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .2s, color .2s;
+}
+.indicator a::after { content: attr(data-label); display: block; writing-mode: vertical-rl; text-orientation: upright; white-space: nowrap; }
+.indicator a[aria-current="true"] { color: #fff; background: var(--band); border-color: var(--band); }
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator, .indicator a { transition: none; }
+}

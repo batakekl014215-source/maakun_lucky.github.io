@@ -1,0 +1,18 @@
+/* ===== トークン（REQUIREMENT.md 4-1 / 確定事項） ===== */
+:root {
+  --bg-page: #F4ECF9;
+  --bg-page-end: #EEE2F5;
+  --bg-glow: #FAF5FD;
+  --band: #A64B97;            /* 確定: 紫ピンク（白文字 約5.2:1） */
+  --band-text: #FFFFFF;
+  --chat-bg: #CAD5E0;
+  --bubble-me: #81CD29;
+  --bubble-them: #FFFFFF;
+  --intro-outline: #708939;
+  --text-body: #5B4332;
+  --text-chat: #1A1A1A;
+  --text-muted: #6B7B8C;
+  --page-pad: 24px;
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: -apple-system, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+}

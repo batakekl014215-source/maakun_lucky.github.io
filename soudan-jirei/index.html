@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>相談事例</title>
+  <meta name="description" content="こんな相談が届いています。どんな小さなことでも、あなたの言葉で送ってください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <!-- 【あとで追加】noindex: <meta name="robots" content="noindex"> をここに -->
+  <!-- 【あとで追加】計測タグ（Clarity等）をここに -->
+</head>
+<body>
+  <div class="page">
+
+    <!-- ① ヒーローバナー（写真は assets/hero.jpg に差し替え） -->
+    <header class="hero">
+      <h1 class="hero__title">相談事例</h1>
+    </header>
+
+    <!-- ② イントロ（キャラクター画像は assets/character.png に差し替え） -->
+    <section class="intro" aria-label="はじめに">
+      <div class="intro__bubble">
+        <svg class="intro__line" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M34 12 C70 3 110 14 150 7 C195 1 238 10 268 22 C292 34 296 60 289 84 C296 106 290 132 266 146 C240 160 216 156 192 160 C186 168 192 176 214 184 C186 184 166 178 152 164 C112 170 70 168 40 154 C12 140 5 112 11 90 C4 66 8 38 34 12 Z"
+                fill="none" stroke="#708939" stroke-width="5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <p class="intro__text" id="intro-text"></p>
+      </div>
+      <img class="intro__char" src="assets/character.png" alt="">
+    </section>
+
+    <!-- ③ ジャンルごとのセクション（js/render.js が data/cases.js から描画） -->
+    <main id="genres"></main>
+
+    <!-- ④ フッターメッセージ -->
+    <section class="footer-msg" id="footer-message" aria-label="メッセージ"></section>
+
+  </div>
+
+  <!-- 右端の現在位置インジケーター（js が生成） -->
+  <nav class="indicator" id="indicator" aria-label="ジャンル"></nav>
+
+  <script src="data/cases.js?v=2"></script>
+  <script src="js/render.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# このフォルダは、リポジトリ maakun_lucky.github.io の中にある。
+# mainへのpushで、コミットしたファイルが、Xserverへ自動アップロードされる。
+# 開発用のファイルは、コミットしない（＝公開サーバーに上げない）。
+
+# 仕様・指示書・参考画像
+REQUIREMENT.md
+VSCODE_PROMPT.md
+reference/
+
+# 元データ（公開するのは、生成した data/cases.js）と、生成スクリプト
+data/cases.json
+scripts/
+
+# エディタ設定
+.vscode/
+.editorconfig
+
+# 退避用・ごみ
+_draft/
+.DS_Store
+*.log
