@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/tokens.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=3">
   <!-- 【あとで追加】noindex: <meta name="robots" content="noindex"> をここに -->
   <!-- 【あとで追加】計測タグ（Clarity等）をここに -->
 </head>
@@ -18,7 +18,8 @@
 
     <!-- ① ヒーローバナー（写真は assets/hero.jpg に差し替え） -->
     <header class="hero">
-      <h1 class="hero__title">相談事例</h1>
+      <h1 class="visually-hidden">恋愛相談の事例集</h1>
+      <img class="hero__img" src="assets/hero.jpg" width="1000" height="563" alt="恋愛相談の事例集 実際に寄せられたご相談の一部をご紹介します。">
     </header>
 
     <!-- ② イントロ（キャラクター画像は assets/character.png に差し替え） -->
@@ -44,7 +45,7 @@
   <!-- 右端の現在位置インジケーター（js が生成） -->
   <nav class="indicator" id="indicator" aria-label="ジャンル"></nav>
 
-  <script src="data/cases.js?v=2"></script>
-  <script src="js/render.js?v=2"></script>
+  <script src="data/cases.js?v=3"></script>
+  <script src="js/render.js?v=3"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 /* ===== トークン（REQUIREMENT.md 4-1 / 確定事項） ===== */
 :root {
-  --bg-page: #F4ECF9;
-  --bg-page-end: #EEE2F5;
-  --bg-glow: #FAF5FD;
+  --bg-page: #FBF8FD;
+  --bg-page-end: #F8F3FB;
+  --bg-glow: #FFFFFF;
   --band: #A64B97;            /* 確定: 紫ピンク（白文字 約5.2:1） */
   --band-text: #FFFFFF;
   --chat-bg: #CAD5E0;
